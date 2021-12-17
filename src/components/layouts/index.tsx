@@ -7,6 +7,7 @@ const LayoutContainer = styled.div`
 	display: flex;
 
 	& > main {
+		position: relative;
 		width: 75%;
 		height: 100%;
 		background-color: #eeeeee;
@@ -56,7 +57,7 @@ const Layout = ({ children }: Props) => {
 	return (
 		<LayoutContainer>
 			<LayoutLeftMenu>
-				<p>asdasd</p>
+				<p>Please Login</p>
 				<button>Sign In</button>
 			</LayoutLeftMenu>
 			<main>{children}</main>

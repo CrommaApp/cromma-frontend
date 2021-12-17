@@ -5,7 +5,7 @@ const SearchFormContainer = styled.form`
 	display: flex;
 	align-items: center;
 	width: 38%;
-	padding-top: 12%;
+	margin-top: 12%;
 
 	& > input {
 		width: 50%;

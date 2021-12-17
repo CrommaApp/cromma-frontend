@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const HomeContainer = styled.section`
 	width: 100%;
 	height: 100%;
-	padding: 25% 2% 0 2%;
+	padding: 20% 2% 0 2%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
