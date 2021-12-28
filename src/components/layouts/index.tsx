@@ -58,7 +58,7 @@ const Layout = ({ children }: Props) => {
 		<LayoutContainer>
 			<LayoutLeftMenu>
 				<p>Please Login</p>
-				<button>Sign In</button>
+				<button type="button">Sign In</button>
 			</LayoutLeftMenu>
 			<main>{children}</main>
 		</LayoutContainer>

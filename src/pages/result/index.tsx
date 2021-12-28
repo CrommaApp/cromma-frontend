@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import SearchResult from '@components/features/result/search-list';
+import SearchResult from '@components/features/result/search-result';
 import styled from 'styled-components';
 
 const ResultContainer = styled.section`
@@ -27,7 +27,7 @@ const ResultContainer = styled.section`
 	}
 `;
 
-const PageButtonList = styled.ul`
+const PageButtons = styled.div`
 	width: 100%;
 	padding: 3% 12%;
 	position: absolute;
@@ -38,32 +38,26 @@ const PageButtonList = styled.ul`
 	width: 100%;
 	background-color: white;
 
-	& > li {
+	& > button {
 		width: 20%;
-		&:first-child > button {
-			background-color: white;
-			color: #888888;
-		}
-		&:last-child > button {
-			background-color: #dddddd;
-			color: white;
-		}
-
-		@media screen and (max-width: 480px) {
-			width: 32%;
-		}
-	}
-
-	& button {
-		width: 100%;
-		padding: 10% 0;
+		padding: 3% 0;
 		font-size: 1.5rem;
 		font-family: var(--font-sans-bold);
 		border-radius: 100px;
 		border: 1px solid #dddddd;
 
+		&:first-child {
+			background-color: white;
+			color: #888888;
+		}
+		&:last-child {
+			background-color: #dddddd;
+			color: white;
+		}
+
 		@media screen and (max-width: 480px) {
 			font-size: 1.2rem;
+			width: 32%;
 		}
 	}
 `;
@@ -79,14 +73,10 @@ const Result = () => {
 		<ResultContainer>
 			<h1>Search results for Korea.</h1>
 			<SearchResult />
-			<PageButtonList>
-				<li>
-					<button type="button">prev</button>
-				</li>
-				<li>
-					<button type="button">next</button>
-				</li>
-			</PageButtonList>
+			<PageButtons>
+				<button type="button">prev</button>
+				<button type="button">next</button>
+			</PageButtons>
 		</ResultContainer>
 	);
 };

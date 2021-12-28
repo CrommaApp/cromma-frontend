@@ -36,7 +36,10 @@ const SearchFormContainer = styled.form`
 const SearchForm = () => {
 	return (
 		<SearchFormContainer>
-			<input type="text" />
+			<label htmlFor="search_input" className="a11y-hidden">
+				keywords
+			</label>
+			<input id="search_input" type="search" />
 			<button type="submit">Search</button>
 		</SearchFormContainer>
 	);

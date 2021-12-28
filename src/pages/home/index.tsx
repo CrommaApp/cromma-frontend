@@ -17,7 +17,7 @@ const HomeContainer = styled.section`
 		font-size: 2.75rem;
 	}
 
-	& > p {
+	& > h2 {
 		font-family: var(--font-sans-bold);
 		font-size: 1.375rem;
 	}
@@ -27,7 +27,7 @@ const Home = () => {
 	return (
 		<HomeContainer>
 			<h1>CONEW</h1>
-			<p>Please enter related keywords</p>
+			<h2>Please enter related keywords</h2>
 			<SearchForm />
 		</HomeContainer>
 	);
