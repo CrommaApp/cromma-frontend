@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react';
+import LoginModal from '@components/features/login/login-modal';
+import React, { ReactNode, useCallback, useState } from 'react';
 import styled from 'styled-components';
 
 const LayoutContainer = styled.div`
@@ -54,14 +55,29 @@ type Props = {
 };
 
 const Layout = ({ children }: Props) => {
+	const [isModalVisible, setIsModalVisible] = useState(false);
+
+	const showLoginModal = useCallback(() => {
+		setIsModalVisible(true);
+	}, []);
+
+	const closeLoginModal = useCallback(() => {
+		setIsModalVisible(false);
+	}, []);
+
 	return (
-		<LayoutContainer>
-			<LayoutLeftMenu>
-				<p>Please Login</p>
-				<button type="button">Sign In</button>
-			</LayoutLeftMenu>
-			<main>{children}</main>
-		</LayoutContainer>
+		<>
+			<LayoutContainer aria-hidden={isModalVisible}>
+				<LayoutLeftMenu>
+					<p>Please Login</p>
+					<button type="button" onClick={showLoginModal}>
+						Sign In
+					</button>
+				</LayoutLeftMenu>
+				<main>{children}</main>
+			</LayoutContainer>
+			{isModalVisible && <LoginModal closeLoginModal={closeLoginModal} />}
+		</>
 	);
 };
 
