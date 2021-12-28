@@ -34,12 +34,13 @@ const SearchItemContainer = styled.li`
 
 type Props = {
 	news: News;
+	index: number;
 };
 
-const SearchItem = ({ news }: Props) => {
+const SearchItem = ({ news, index }: Props) => {
 	return (
-		<SearchItemContainer>
-			<h2>{news.title}</h2>
+		<SearchItemContainer aria-labelledby={`news_title_${index}`}>
+			<h2 id={`news_title_${index}`}>{news.title}</h2>
 			<time dateTime={news.wrt_dt}>{news.wrt_dt}</time>
 			<p>{news.txt_origin_cn}</p>
 		</SearchItemContainer>

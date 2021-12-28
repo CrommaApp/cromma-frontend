@@ -35,7 +35,7 @@ const SearchFormContainer = styled.form`
 
 const SearchForm = () => {
 	return (
-		<SearchFormContainer>
+		<SearchFormContainer aria-labelledby="search_guide">
 			<label htmlFor="search_input" className="a11y-hidden">
 				keywords
 			</label>

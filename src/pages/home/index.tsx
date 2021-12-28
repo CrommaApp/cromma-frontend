@@ -27,7 +27,7 @@ const Home = () => {
 	return (
 		<HomeContainer>
 			<h1>CONEW</h1>
-			<h2>Please enter related keywords</h2>
+			<h2 id="search_guide">Please enter related keywords</h2>
 			<SearchForm />
 		</HomeContainer>
 	);

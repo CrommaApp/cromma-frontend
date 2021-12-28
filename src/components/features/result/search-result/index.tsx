@@ -48,9 +48,9 @@ const SearchList = styled.ul`
 
 const SearchResult = () => {
 	return (
-		<SearchList>
-			{dummyNews.map((news) => (
-				<SearchItem key={news.sfty_notice_id} news={news} />
+		<SearchList aria-labelledby="search_result">
+			{dummyNews.map((news, index) => (
+				<SearchItem key={news.sfty_notice_id} news={news} index={index} />
 			))}
 		</SearchList>
 	);
