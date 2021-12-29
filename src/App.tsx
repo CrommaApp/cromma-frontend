@@ -4,12 +4,19 @@ import { Redirect, Route, Switch } from 'react-router';
 import Home from '@pages/home';
 import Result from '@pages/result';
 import Layout from '@components/layouts';
+import SearchNewsService from '@services/search-news';
 
-const App = () => {
+type Props = {
+	searchNewsService: SearchNewsService;
+};
+
+const App = ({ searchNewsService }: Props) => {
 	return (
 		<Layout>
 			<Switch>
-				<Route exact path="/" component={Home} />
+				<Route exact path="/">
+					<Home searchNewsService={searchNewsService} />
+				</Route>
 				<Route exact path="/result/:keyword" component={Result} />
 				<Redirect path="*" to="/" />
 			</Switch>

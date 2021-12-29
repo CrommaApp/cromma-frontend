@@ -9,8 +9,10 @@ class SearchNewsService {
 		return this.keyword;
 	}
 
-	setKeyword(newKeyword: string) {
+	setKeyword(newKeyword: string, update: React.Dispatch<React.SetStateAction<string>>) {
 		this.keyword = newKeyword;
+
+		update(newKeyword);
 	}
 }
 

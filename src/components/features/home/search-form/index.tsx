@@ -1,4 +1,5 @@
-import React from 'react';
+import SearchNewsService from '@services/search-news';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchFormContainer = styled.form`
@@ -28,18 +29,41 @@ const SearchFormContainer = styled.form`
 		}
 	}
 
+	& > p {
+		font-size: 0.8rem;
+	}
+
 	@media screen and (max-width: 480px) {
 		width: 80%;
 	}
 `;
 
-const SearchForm = () => {
+type Props = {
+	searchNewsService: SearchNewsService;
+	moveToReultPage: (keyword: string) => void;
+};
+
+const SearchForm = ({ searchNewsService, moveToReultPage }: Props) => {
+	const [keyword, setKeyword] = useState(searchNewsService.getKeyword());
+
+	const handleChangeKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+		searchNewsService.setKeyword(e.target.value, setKeyword);
+	};
+
+	const submitSearchForm = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		if (keyword.trim() !== '') {
+			moveToReultPage(keyword);
+		}
+	};
+
 	return (
-		<SearchFormContainer aria-labelledby="search_guide">
+		<SearchFormContainer aria-labelledby="search_guide" onSubmit={submitSearchForm}>
 			<label htmlFor="search_input" className="a11y-hidden">
 				keywords
 			</label>
-			<input id="search_input" type="search" />
+			<input id="search_input" aria-required="true" type="search" value={keyword} onChange={handleChangeKeyword} />
 			<button type="submit">Search</button>
 		</SearchFormContainer>
 	);

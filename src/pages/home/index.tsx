@@ -1,6 +1,8 @@
+import React, { useCallback } from 'react';
 import SearchForm from '@components/features/home/search-form';
-import React from 'react';
+import SearchNewsService from '@services/search-news';
 import styled from 'styled-components';
+import { useHistory } from 'react-router';
 
 const HomeContainer = styled.section`
 	width: 100%;
@@ -23,12 +25,22 @@ const HomeContainer = styled.section`
 	}
 `;
 
-const Home = () => {
+type Props = {
+	searchNewsService: SearchNewsService;
+};
+
+const Home = ({ searchNewsService }: Props) => {
+	const history = useHistory();
+
+	const moveToReultPage = useCallback((keyword: string) => {
+		history.push(`/result/${keyword}`);
+	}, []);
+
 	return (
 		<HomeContainer>
 			<h1>CONEW</h1>
-			<h2 id="search_guide">Please enter related keywords</h2>
-			<SearchForm />
+			<h2 id="search_guide">Please enter related keyword</h2>
+			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
 		</HomeContainer>
 	);
 };

@@ -71,7 +71,7 @@ const Result = () => {
 
 	return (
 		<ResultContainer>
-			<h1 id="search_result">Search results for Korea.</h1>
+			<h1 id="search_result">Search results for {params.keyword}.</h1>
 			<SearchResult />
 			<PageButtons aria-label="pagination buttons">
 				<button type="button">prev</button>
