@@ -14,6 +14,11 @@ const SearchFormContainer = styled.form`
 		border: 1px solid #dddddd;
 		margin-right: 2%;
 		border-radius: 8px;
+		outline: none;
+
+		&:focus {
+			border: 2px solid #aaaaaa;
+		}
 	}
 
 	& > button {

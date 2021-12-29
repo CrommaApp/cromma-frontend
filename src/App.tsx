@@ -17,7 +17,9 @@ const App = ({ searchNewsService }: Props) => {
 				<Route exact path="/">
 					<Home searchNewsService={searchNewsService} />
 				</Route>
-				<Route exact path="/result/:keyword" component={Result} />
+				<Route exact path="/result/:keyword">
+					<Result searchNewsService={searchNewsService} />
+				</Route>
 				<Redirect path="*" to="/" />
 			</Switch>
 		</Layout>

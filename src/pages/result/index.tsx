@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import SearchResult from '@components/features/result/search-result';
 import styled from 'styled-components';
+import SearchNewsService from '@services/search-news';
+import { News } from 'src/types/result/types';
+import Loading from '@components/features/result/loading';
 
 const ResultContainer = styled.section`
 	width: 100%;
@@ -66,16 +69,69 @@ type Params = {
 	keyword: string;
 };
 
-const Result = () => {
+type Props = {
+	searchNewsService: SearchNewsService;
+};
+
+const Result = ({ searchNewsService }: Props) => {
 	const params = useParams<Params>();
+
+	const [totalPage, setTotalPage] = useState(searchNewsService.getTotalPage());
+	const handleChangeTotalPage = useCallback((totalPageNum: number) => {
+		searchNewsService.setTotalPage(totalPageNum, setTotalPage);
+	}, []);
+
+	const [curPage, setCurPage] = useState(searchNewsService.getCurPage());
+	const handleChangeCurPage = useCallback(
+		(pageNum: number) => {
+			if (pageNum === 0 || pageNum > totalPage) {
+				return;
+			}
+			searchNewsService.setCurPage(pageNum, setCurPage);
+		},
+		[totalPage],
+	);
+
+	const [keyword, setKeyword] = useState(searchNewsService.getKeyword());
+	const handleChangeKeyword = useCallback((keyword: string) => {
+		searchNewsService.setKeyword(keyword, setKeyword);
+	}, []);
+
+	const [searchList, setSearchList] = useState<News[]>(searchNewsService.getNewsList());
+	const handleChangeSearchList = useCallback((newsList: News[]) => {
+		searchNewsService.setNewsList(newsList, setSearchList);
+	}, []);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	const getAllSearchList = async () => {
+		setIsLoading(true);
+
+		const result = await searchNewsService.getSearchResultData();
+		handleChangeTotalPage(result.totalPage);
+		handleChangeSearchList(result.news);
+
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		if (searchNewsService.getKeyword() === '') {
+			handleChangeKeyword(params.keyword);
+		}
+		getAllSearchList();
+	}, [curPage]);
 
 	return (
 		<ResultContainer>
-			<h1 id="search_result">Search results for {params.keyword}.</h1>
-			<SearchResult />
+			<h1 id="search_result">Search results for {keyword}.</h1>
+			{isLoading ? <Loading /> : <SearchResult searchList={searchList} />}
 			<PageButtons aria-label="pagination buttons">
-				<button type="button">prev</button>
-				<button type="button">next</button>
+				<button type="button" onClick={() => handleChangeCurPage(curPage - 1)}>
+					prev
+				</button>
+				<button type="button" onClick={() => handleChangeCurPage(curPage + 1)}>
+					next
+				</button>
 			</PageButtons>
 		</ResultContainer>
 	);

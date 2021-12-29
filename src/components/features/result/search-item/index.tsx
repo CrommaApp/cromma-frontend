@@ -6,7 +6,7 @@ const SearchItemContainer = styled.li`
 	width: 100%;
 	border: 1px solid #dddddd;
 	border-radius: 8px;
-	margin: 2% 0;
+	margin: 3% 0;
 	padding: 3%;
 
 	& > h2 {
@@ -40,9 +40,9 @@ type Props = {
 const SearchItem = ({ news, index }: Props) => {
 	return (
 		<SearchItemContainer aria-labelledby={`news_title_${index}`}>
-			<h2 id={`news_title_${index}`}>{news.title}</h2>
+			<h2 id={`news_title_${index}`}>{news.title.replace(/(<([^>]+)>)/gi, '')}</h2>
 			<time dateTime={news.wrt_dt}>{news.wrt_dt}</time>
-			<p>{news.txt_origin_cn}</p>
+			<p>{news.txt_origin_cn.replace(/&nbsp;/gi, ' ')}</p>
 		</SearchItemContainer>
 	);
 };

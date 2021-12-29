@@ -3,33 +3,6 @@ import styled from 'styled-components';
 import SearchItem from '../search-item';
 import { News } from 'src/types/result/types';
 
-export const dummyNews: News[] = [
-	{
-		sfty_notice_id: '1',
-		title: 'title',
-		wrt_dt: '2021-12-14',
-		txt_origin_cn: 'testtest',
-	},
-	{
-		sfty_notice_id: '2',
-		title: 'title',
-		wrt_dt: '2021-12-14',
-		txt_origin_cn: 'testtest',
-	},
-	{
-		sfty_notice_id: '3',
-		title: 'title',
-		wrt_dt: '2021-12-14',
-		txt_origin_cn: 'testtest',
-	},
-	{
-		sfty_notice_id: '4',
-		title: 'title',
-		wrt_dt: '2021-12-14',
-		txt_origin_cn: 'testtest',
-	},
-];
-
 const SearchList = styled.ul`
 	width: 65%;
 	height: 60%;
@@ -46,10 +19,14 @@ const SearchList = styled.ul`
 	}
 `;
 
-const SearchResult = () => {
+type Props = {
+	searchList: News[];
+};
+
+const SearchResult = ({ searchList }: Props) => {
 	return (
 		<SearchList aria-labelledby="search_result">
-			{dummyNews.map((news, index) => (
+			{searchList?.map((news, index) => (
 				<SearchItem key={news.sfty_notice_id} news={news} index={index} />
 			))}
 		</SearchList>
