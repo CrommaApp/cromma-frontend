@@ -3,6 +3,7 @@ import SearchForm from '@components/features/home/search-form';
 import SearchNewsService from '@services/search-news';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
+import RecentKeywords from '@components/features/home/recent-keywords';
 
 const HomeContainer = styled.section`
 	width: 100%;
@@ -36,11 +37,14 @@ const Home = ({ searchNewsService }: Props) => {
 		history.push(`/result/${keyword}`);
 	}, []);
 
+	const mockRecentKeywords: string[] = ['korea', 'seoul'];
+
 	return (
 		<HomeContainer>
 			<h1>CONEW</h1>
 			<h2 id="search_guide">Please enter related keyword</h2>
 			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
+			<RecentKeywords recentKeywords={mockRecentKeywords} moveToReultPage={moveToReultPage} />
 		</HomeContainer>
 	);
 };
