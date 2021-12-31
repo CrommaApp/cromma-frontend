@@ -25,7 +25,7 @@ export const ModalCard = styled.dialog`
 	background: white;
 	border: none;
 	border-radius: 12px;
-	padding: 80px 0;
+	padding: 60px 0;
 	cursor: auto;
 
 	& > h1 {
@@ -37,12 +37,12 @@ export const ModalCard = styled.dialog`
 	@media screen and (max-width: 768px) {
 		width: 400px;
 		height: 300px;
-		padding: 70px 0;
+		padding: 40px 0;
 	}
 
 	@media screen and (max-width: 480px) {
 		width: 320px;
 		height: 220px;
-		padding: 40px 5px;
+		padding: 15px 5px 5px 5px;
 	}
 `;

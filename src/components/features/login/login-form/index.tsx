@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LoginFormContainer, LoginFormInput } from './styled';
 
 const LoginForm = () => {
 	const [id, setId] = useState('');
@@ -46,9 +47,9 @@ const LoginForm = () => {
 	};
 
 	return (
-		<form onSubmit={submitLoginForm}>
+		<LoginFormContainer onSubmit={submitLoginForm}>
 			<ul>
-				<li>
+				<LoginFormInput>
 					<label htmlFor="login_input_id" className="a11y-hidden">
 						ID
 					</label>
@@ -67,9 +68,9 @@ const LoginForm = () => {
 							The ID must consist of 4 to 10 letters in English or numbers
 						</p>
 					)}
-				</li>
+				</LoginFormInput>
 
-				<li>
+				<LoginFormInput>
 					<label htmlFor="login_input_password" className="a11y-hidden">
 						Password
 					</label>
@@ -88,11 +89,11 @@ const LoginForm = () => {
 							The password must consist of 4 to 10 letters in English or numbers
 						</p>
 					)}
-				</li>
+				</LoginFormInput>
 			</ul>
 
 			<button type="submit">Login</button>
-		</form>
+		</LoginFormContainer>
 	);
 };
 

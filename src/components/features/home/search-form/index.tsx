@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const SearchFormContainer = styled.form`
 	display: flex;
 	align-items: center;
-	width: 38%;
+	width: 40%;
 	margin-top: 12%;
 
 	& > input {
@@ -36,6 +36,10 @@ const SearchFormContainer = styled.form`
 
 	& > p {
 		font-size: 0.8rem;
+	}
+
+	@media screen and (max-width: 768px) {
+		width: 60%;
 	}
 
 	@media screen and (max-width: 480px) {

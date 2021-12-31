@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from '@components/shared/modal';
-import styled from 'styled-components';
 import LoginForm from '../login-form';
 
 type Props = {

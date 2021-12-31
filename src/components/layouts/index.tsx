@@ -71,7 +71,7 @@ const Layout = ({ children }: Props) => {
 				<LayoutLeftMenu>
 					<p>Please Login</p>
 					<button type="button" onClick={showLoginModal}>
-						Sign In
+						Login
 					</button>
 				</LayoutLeftMenu>
 				<main>{children}</main>
