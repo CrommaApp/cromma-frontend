@@ -63,6 +63,15 @@ const PageButtons = styled.div`
 			width: 32%;
 		}
 	}
+
+	& > p {
+		margin: 0;
+		font-size: 1.2rem;
+
+		@media screen and (max-width: 480px) {
+			font-size: 1rem;
+		}
+	}
 `;
 
 type Params = {
@@ -107,9 +116,9 @@ const Result = ({ searchNewsService }: Props) => {
 	const getAllSearchList = async () => {
 		setIsLoading(true);
 
-		const result = await searchNewsService.getSearchResultData();
-		handleChangeTotalPage(result.totalPage);
-		handleChangeSearchList(result.news);
+		const { totalPage, news } = await searchNewsService.getSearchResultData();
+		handleChangeTotalPage(totalPage);
+		handleChangeSearchList(news);
 
 		setIsLoading(false);
 	};
@@ -121,14 +130,21 @@ const Result = ({ searchNewsService }: Props) => {
 		getAllSearchList();
 	}, [curPage]);
 
+	useEffect(() => {
+		return () => {
+			searchNewsService.resetAll();
+		};
+	}, []);
+
 	return (
 		<ResultContainer>
 			<h1 id="search_result">Search results for {keyword}.</h1>
 			{isLoading ? <Loading /> : <SearchResult searchList={searchList} />}
-			<PageButtons aria-label="pagination buttons">
+			<PageButtons>
 				<button type="button" onClick={() => handleChangeCurPage(curPage - 1)}>
 					prev
 				</button>
+				<p data-testid="current_page">{curPage}</p>
 				<button type="button" onClick={() => handleChangeCurPage(curPage + 1)}>
 					next
 				</button>

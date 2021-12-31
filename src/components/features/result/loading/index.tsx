@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const LoadingContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 65%;
 	height: 60%;
 	margin-top: 5%;
@@ -17,7 +20,11 @@ const LoadingContainer = styled.div`
 `;
 
 const Loading = () => {
-	return <LoadingContainer>loading...</LoadingContainer>;
+	return (
+		<LoadingContainer>
+			<h2>loading...</h2>
+		</LoadingContainer>
+	);
 };
 
 export default Loading;
