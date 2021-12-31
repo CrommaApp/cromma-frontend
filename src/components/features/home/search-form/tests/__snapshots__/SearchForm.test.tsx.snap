@@ -3,7 +3,7 @@
 exports[`SearchForm Snapshot 1`] = `
 <form
   aria-labelledby="search_guide"
-  className="sc-bdvvtL bQPxZi"
+  className="sc-bdvvtL bKDxHl"
   onSubmit={[Function]}
 >
   <label
