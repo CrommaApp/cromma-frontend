@@ -90,6 +90,14 @@ class SearchNewsService {
 			news,
 		};
 	}
+
+	resetAll() {
+		this.keyword = '';
+		this.limit = 5;
+		this.curPage = 1;
+		this.totalPage = 1;
+		this.newsList = [];
+	}
 }
 
 export default SearchNewsService;

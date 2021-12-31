@@ -5,6 +5,13 @@ describe('SearchNewsService', () => {
 	let searchNewsService: SearchNewsService;
 	const update = jest.fn();
 
+	const setAllValues = () => {
+		searchNewsService.setKeyword('korea', update);
+		searchNewsService.setCurPage(5, update);
+		searchNewsService.setTotalPage(10, update);
+		searchNewsService.setNewsList(mockNewsList, update);
+	};
+
 	const mockNewsList: News[] = [
 		{
 			sfty_notice_id: '1',
@@ -84,5 +91,17 @@ describe('SearchNewsService', () => {
 
 			expect(update).toBeCalledWith(mockNewsList);
 		});
+	});
+
+	it('Reset all values', () => {
+		setAllValues();
+
+		searchNewsService.resetAll();
+
+		expect(searchNewsService.getKeyword()).toBe('');
+		expect(searchNewsService.getLimit()).toBe(5);
+		expect(searchNewsService.getCurPage()).toBe(1);
+		expect(searchNewsService.getTotalPage()).toBe(1);
+		expect(searchNewsService.getNewsList()).toEqual([]);
 	});
 });
