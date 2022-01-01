@@ -41,7 +41,7 @@ const Home = ({ searchNewsService }: Props) => {
 
 	return (
 		<HomeContainer>
-			<h1>CONEW</h1>
+			<h1>Cromma</h1>
 			<h2 id="search_guide">Please enter related keyword</h2>
 			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
 			<RecentKeywords recentKeywords={mockRecentKeywords} moveToReultPage={moveToReultPage} />
