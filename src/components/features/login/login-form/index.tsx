@@ -1,7 +1,13 @@
+import { userState } from '@stores/user';
 import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { LoginFormContainer, LoginFormInput } from './styled';
 
-const LoginForm = () => {
+type Props = {
+	closeLoginModal: () => void;
+};
+
+const LoginForm = ({ closeLoginModal }: Props) => {
 	const [id, setId] = useState('');
 	const handleChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setId(e.target.value);
@@ -17,6 +23,8 @@ const LoginForm = () => {
 
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
+	const setUser = useSetRecoilState(userState);
+
 	const submitLoginForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
@@ -25,6 +33,15 @@ const LoginForm = () => {
 		setIsFormSubmitted(true);
 
 		if (result) {
+			setUser((prev) => {
+				return {
+					...prev,
+					isLogin: true,
+					id: id,
+				};
+			});
+
+			closeLoginModal();
 		}
 	};
 

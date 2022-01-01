@@ -1,6 +1,8 @@
 import LoginModal from '@components/features/login/login-modal';
 import React, { ReactNode, useCallback, useState } from 'react';
 import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { userState } from '@stores/user';
 
 const LayoutContainer = styled.div`
 	width: 100%;
@@ -65,14 +67,32 @@ const Layout = ({ children }: Props) => {
 		setIsModalVisible(false);
 	}, []);
 
+	const [user, setUser] = useRecoilState(userState);
+
+	const logout = () => {
+		setUser((prev) => {
+			return {
+				...prev,
+				isLogin: false,
+				id: '',
+			};
+		});
+	};
+
 	return (
 		<>
 			<LayoutContainer aria-hidden={isModalVisible}>
 				<LayoutLeftMenu>
-					<p>Please Login</p>
-					<button type="button" onClick={showLoginModal}>
-						Login
-					</button>
+					<p>{user.isLogin ? user.id : 'Please Login'}</p>
+					{user.isLogin ? (
+						<button type="button" onClick={logout}>
+							Logout
+						</button>
+					) : (
+						<button type="button" onClick={showLoginModal}>
+							Login
+						</button>
+					)}
 				</LayoutLeftMenu>
 				<main>{children}</main>
 			</LayoutContainer>

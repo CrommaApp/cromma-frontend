@@ -10,7 +10,7 @@ const LoginModal = ({ closeLoginModal }: Props) => {
 	return (
 		<Modal onCloseModal={closeLoginModal}>
 			<h1 id="modal_label">Login</h1>
-			<LoginForm />
+			<LoginForm closeLoginModal={closeLoginModal} />
 		</Modal>
 	);
 };
