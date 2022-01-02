@@ -3,6 +3,7 @@ import React, { ReactNode, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
+import AuthService from '@apis/auth/auth-service';
 
 const LayoutContainer = styled.div`
 	width: 100%;
@@ -53,10 +54,11 @@ const LayoutLeftMenu = styled.div`
 `;
 
 type Props = {
+	authService: AuthService;
 	children: ReactNode;
 };
 
-const Layout = ({ children }: Props) => {
+const Layout = ({ authService, children }: Props) => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const showLoginModal = useCallback(() => {
@@ -69,7 +71,9 @@ const Layout = ({ children }: Props) => {
 
 	const [user, setUser] = useRecoilState(userState);
 
-	const logout = () => {
+	const logout = async () => {
+		const result = await authService.logout();
+
 		setUser((prev) => {
 			return {
 				...prev,
@@ -96,7 +100,7 @@ const Layout = ({ children }: Props) => {
 				</LayoutLeftMenu>
 				<main>{children}</main>
 			</LayoutContainer>
-			{isModalVisible && <LoginModal closeLoginModal={closeLoginModal} />}
+			{isModalVisible && <LoginModal authService={authService} closeLoginModal={closeLoginModal} />}
 		</>
 	);
 };

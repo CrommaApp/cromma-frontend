@@ -1,13 +1,15 @@
+import AuthService from '@apis/auth/auth-service';
 import { userState } from '@stores/user';
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { LoginFormContainer, LoginFormInput } from './styled';
 
 type Props = {
+	authService: AuthService;
 	closeLoginModal: () => void;
 };
 
-const LoginForm = ({ closeLoginModal }: Props) => {
+const LoginForm = ({ authService, closeLoginModal }: Props) => {
 	const [id, setId] = useState('');
 	const handleChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setId(e.target.value);
@@ -25,7 +27,31 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 
 	const setUser = useSetRecoilState(userState);
 
-	const submitLoginForm = (e: React.FormEvent<HTMLFormElement>) => {
+	const login = async () => {
+		try {
+			const result = await authService.login({
+				userId: id,
+				password,
+			});
+
+			if (result.statusCode === 200) {
+				setUser((prev) => {
+					return {
+						...prev,
+						isLogin: true,
+						id: id,
+						keywords: result.data.Keywords.slice(0, 5),
+					};
+				});
+
+				alert(result.message);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const submitLoginForm = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		const result = checkInputValidaton();
@@ -33,15 +59,24 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 		setIsFormSubmitted(true);
 
 		if (result) {
-			setUser((prev) => {
-				return {
-					...prev,
-					isLogin: true,
-					id: id,
-				};
-			});
+			try {
+				const result = await authService.signup({
+					userId: id,
+					password,
+				});
 
-			closeLoginModal();
+				if (result.statusCode === 201) {
+					await login();
+
+					closeLoginModal();
+				}
+			} catch (error: any) {
+				if (error.response.data.message === '이미 사용 중인 아이디입니다.') {
+					await login();
+
+					closeLoginModal();
+				}
+			}
 		}
 	};
 
@@ -93,7 +128,7 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 					</label>
 					<input
 						id="login_input_password"
-						type="text"
+						type="password"
 						placeholder="passowrd"
 						value={password}
 						onChange={handleChangePassword}
