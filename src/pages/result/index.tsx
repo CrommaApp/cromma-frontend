@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import SearchResult from '@components/features/result/search-result';
 import styled from 'styled-components';
-import SearchNewsService from '@services/search-news';
+import SearchNewsService from '@services/search/search-news';
 import { News } from 'src/types/result/types';
 import Loading from '@components/features/result/loading';
 

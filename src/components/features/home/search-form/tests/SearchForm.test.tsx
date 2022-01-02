@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import SearchForm from '@components/features/home/search-form';
-import SearchNewsService from '@services/search-news';
+import SearchNewsService from '@services/search/search-news';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 

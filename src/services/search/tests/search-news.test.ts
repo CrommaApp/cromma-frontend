@@ -1,4 +1,4 @@
-import SearchNewsService from '@services/search-news';
+import SearchNewsService from '@services/search/search-news';
 import { News } from 'src/types/result/types';
 
 describe('SearchNewsService', () => {

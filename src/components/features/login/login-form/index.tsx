@@ -1,4 +1,4 @@
-import AuthService from '@apis/auth/auth-service';
+import AuthService from '@services/auth/auth-service';
 import { userState } from '@stores/user';
 import React, { useState } from 'react';
 import { useSetRecoilState } from 'recoil';
@@ -40,14 +40,17 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 						...prev,
 						isLogin: true,
 						id: id,
-						keywords: result.data.Keywords.slice(0, 5),
+						recentKeywords: result.data.Keywords.slice(0, 5),
 					};
 				});
 
 				alert(result.message);
+
+				closeLoginModal();
 			}
-		} catch (error) {
+		} catch (error: any) {
 			console.error(error);
+			alert(error.response?.data?.message || '잠시 후 다시 시도해주세요.');
 		}
 	};
 
@@ -67,14 +70,10 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 
 				if (result.statusCode === 201) {
 					await login();
-
-					closeLoginModal();
 				}
 			} catch (error: any) {
 				if (error.response.data.message === '이미 사용 중인 아이디입니다.') {
 					await login();
-
-					closeLoginModal();
 				}
 			}
 		}

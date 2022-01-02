@@ -2,7 +2,7 @@ import React from 'React';
 import { screen, render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Result from '@pages/result';
-import SearchNewsService from '@services/search-news';
+import SearchNewsService from '@services/search/search-news';
 import { MemoryRouter, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';

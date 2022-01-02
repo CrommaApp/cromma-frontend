@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import API_URL, { API_HOST, BasicResult } from '@apis/index';
+import API_URL, { API_HOST, BasicResult } from '@services/api';
 import { getMyInfoResult, LoginResult, SignRequest } from './types';
 
 class AuthService {

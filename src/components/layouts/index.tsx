@@ -3,7 +3,7 @@ import React, { ReactNode, useCallback, useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
-import AuthService from '@apis/auth/auth-service';
+import AuthService from '@services/auth/auth-service';
 
 const LayoutContainer = styled.div`
 	width: 100%;
@@ -79,6 +79,7 @@ const Layout = ({ authService, children }: Props) => {
 				...prev,
 				isLogin: false,
 				id: '',
+				recentKeywords: [],
 			};
 		});
 	};

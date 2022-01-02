@@ -1,4 +1,4 @@
-import SearchNewsService from '@services/search-news';
+import SearchNewsService from '@services/search/search-news';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -59,11 +59,18 @@ const SearchForm = ({ searchNewsService, moveToReultPage }: Props) => {
 		searchNewsService.setKeyword(e.target.value, setKeyword);
 	};
 
-	const submitSearchForm = (e: React.FormEvent<HTMLFormElement>) => {
+	const submitSearchForm = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (keyword.trim() !== '') {
 			moveToReultPage(keyword);
+			try {
+				await searchNewsService.addRecentKeyword({
+					content: keyword,
+				});
+			} catch (error) {
+				console.error(error);
+			}
 		}
 	};
 
