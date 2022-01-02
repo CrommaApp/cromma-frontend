@@ -3,11 +3,21 @@ import { render, screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import RecentKeywords from '@components/features/home/recent-keywords';
 import userEvent from '@testing-library/user-event';
+import { Keyword } from 'src/types/home/types';
 
 describe('RecentKeywords', () => {
 	const moveToReultPage = jest.fn();
 
-	const mockRecentKeywords: string[] = ['korea', 'seoul'];
+	const mockRecentKeywords: Keyword[] = [
+		{
+			id: 1,
+			content: 'korea',
+		},
+		{
+			id: 2,
+			content: 'seoul',
+		},
+	];
 
 	beforeEach(() => {
 		render(<RecentKeywords recentKeywords={mockRecentKeywords} moveToReultPage={moveToReultPage} />);

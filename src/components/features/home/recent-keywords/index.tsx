@@ -1,4 +1,5 @@
 import React from 'react';
+import { Keyword } from 'src/types/home/types';
 import styled from 'styled-components';
 
 const KeywordList = styled.ul`
@@ -25,16 +26,16 @@ const KeywordList = styled.ul`
 `;
 
 type Props = {
-	recentKeywords: string[];
+	recentKeywords: Keyword[];
 	moveToReultPage: (keyword: string) => void;
 };
 
 const RecentKeywords = ({ recentKeywords, moveToReultPage }: Props) => {
 	return (
 		<KeywordList>
-			{recentKeywords.map((keyword, idx) => (
-				<li key={idx} onClick={() => moveToReultPage(keyword)}>
-					{keyword}
+			{recentKeywords?.map(({ id, content }) => (
+				<li key={id} onClick={() => moveToReultPage(content)}>
+					{content}
 				</li>
 			))}
 		</KeywordList>
