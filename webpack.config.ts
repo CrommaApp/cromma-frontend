@@ -89,9 +89,9 @@ const config: Configuration = {
 		new WebpackManifestPlugin(),
 	],
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, 'build'),
 		filename: '[name].js',
-		publicPath: '/dist/',
+		publicPath: './',
 		clean: true,
 	},
 	devServer: {

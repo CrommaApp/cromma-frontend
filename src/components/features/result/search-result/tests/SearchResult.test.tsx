@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { News } from 'src/types/result/types';
 import SearchResult from '@components/features/result/search-result';
 import { screen, render } from '@testing-library/react';

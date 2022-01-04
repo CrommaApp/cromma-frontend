@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import { screen, render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import Result from '@pages/result';
