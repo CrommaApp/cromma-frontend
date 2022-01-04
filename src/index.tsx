@@ -11,7 +11,7 @@ const authService = new AuthService();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter basename={process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : ''}>
+		<BrowserRouter>
 			<RecoilRoot>
 				<App searchNewsService={searchNewsService} authService={authService} />
 			</RecoilRoot>
