@@ -1,23 +1,23 @@
-import path from 'path';
-import webpack, { Configuration as WebpackConfiguration } from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const dotenv = require('dotenv');
 
-interface Configuration extends WebpackConfiguration {
-	devServer?: WebpackDevServerConfiguration;
-}
+type WebpackMode = {
+	isDev: boolean;
+	isAnalyzeMode: boolean;
+};
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
-
-const config: Configuration = {
+const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
+	target: 'web',
 	name: 'cromma',
-	mode: isDevelopment ? 'development' : 'production',
-	devtool: isDevelopment ? 'inline-source-map' : 'hidden-source-map',
+	mode: isDev ? 'development' : 'production',
+	devtool: isDev ? 'inline-source-map' : 'hidden-source-map',
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
@@ -45,38 +45,37 @@ const config: Configuration = {
 							'@babel/preset-env',
 							{
 								targets: { browsers: ['last 2 chrome versions'] },
-								debug: isDevelopment,
+								debug: isDev,
 							},
 						],
 						'@babel/preset-react',
 						'@babel/preset-typescript',
 					],
-					env: {
-						development: {
-							plugins: [require.resolve('react-refresh/babel'), 'babel-plugin-styled-components'],
-						},
-					},
+					plugins: [isDev && 'react-refresh/babel', isDev && 'babel-plugin-styled-components'].filter(Boolean),
 				},
-				exclude: ['/node_modules'],
+				exclude: ['/node_modules/'],
 			},
 			{
 				test: /\.css?$/,
 				use: ['style-loader', 'css-loader'],
 			},
 			{
-				test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-				loader: 'url-loader',
-				options: {
-					name: '[hash].[ext]',
-					limit: 10000,
+				test: /\.(ico|png|jpg|jpeg|gif|svg)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'images/[name][ext]',
+				},
+			},
+			{
+				test: /\.(woff|woff2|ttf)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'fonts/[name][ext]',
 				},
 			},
 		],
 	},
 	plugins: [
-		new webpack.EnvironmentPlugin({
-			NODE_ENV: isDevelopment ? 'development' : 'production',
-		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
 		}),
@@ -87,27 +86,36 @@ const config: Configuration = {
 			'process.env': JSON.stringify(dotenv.config().parsed),
 		}),
 		new WebpackManifestPlugin(),
-	],
+		isDev && new webpack.HotModuleReplacementPlugin(),
+		new ReactRefreshWebpackPlugin(),
+		isAnalyzeMode &&
+			new BundleAnalyzerPlugin({
+				generateStatsFile: true,
+				statsFilename: 'bundle-stats.json',
+			}),
+	].filter(Boolean),
 	output: {
-		path: path.join(__dirname, 'build'),
-		filename: '[name].js',
-		publicPath: isDevelopment ? '/dist/' : './',
+		path: path.join(__dirname, 'dist'),
+		filename: 'bundle.[name].[chunkhash].js',
+		chunkFilename: 'chunk.[name].[chunkhash].js',
+		publicPath: './',
 		clean: true,
 	},
 	devServer: {
+		static: path.join(__dirname, 'dist'),
 		historyApiFallback: true,
 		port: 3000,
 		open: true,
 		compress: true,
+		hot: true,
 	},
+});
+
+module.exports = (env: any, argv: any) => {
+	const config = getConfig({
+		isDev: argv.mode === 'development',
+		isAnalyzeMode: env.bundleAnalyze,
+	});
+
+	return config;
 };
-
-if (isDevelopment && config.plugins) {
-	config.plugins.push(new webpack.HotModuleReplacementPlugin());
-	config.plugins.push(new ReactRefreshWebpackPlugin());
-}
-if (!isDevelopment && config.plugins) {
-	config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
-}
-
-export default config;
