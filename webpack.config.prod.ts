@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const dotenv = require('dotenv');
 
 const config = {
@@ -42,7 +44,7 @@ const config = {
 						'@babel/preset-typescript',
 					],
 				},
-				exclude: ['/node_modules'],
+				exclude: ['/node_modules', '/tests'],
 			},
 			{
 				test: /\.css?$/,
@@ -81,6 +83,14 @@ const config = {
 			generateStatsFile: true,
 			statsFilename: 'bundle-stats.json',
 		}),
+		new MiniCssExtractPlugin({
+			filename: `[name].[chunkhash].css`,
+		}),
+		new CompressionPlugin({
+			algorithm: 'gzip',
+			test: /\.(js|css|html|ttf)$/,
+			threshold: 10240,
+		}),
 	],
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -97,7 +107,24 @@ const config = {
 	},
 	optimization: {
 		splitChunks: {
-			chunks: 'all',
+			cacheGroups: {
+				default: false,
+				vendors: false,
+				framework: {
+					chunks: 'all',
+					name: 'framework',
+					test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+					priority: 30,
+					reuseExistingChunk: true,
+				},
+				library: {
+					chunks: 'all',
+					name: 'library',
+					test: /[\\/]node_modules[\\/]/,
+					priority: 20,
+					reuseExistingChunk: true,
+				},
+			},
 		},
 	},
 };
