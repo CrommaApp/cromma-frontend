@@ -8,3 +8,5 @@ dist
 */__coverage__
 
 cromma.pem
+
+default.conf
