@@ -3,21 +3,15 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const dotenv = require('dotenv');
 
-type WebpackMode = {
-	isDev: boolean;
-	isAnalyzeMode: boolean;
-};
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
-	target: 'web',
+const config = {
 	name: 'cromma',
-	mode: isDev ? 'development' : 'production',
-	devtool: isDev ? 'inline-source-map' : 'hidden-source-map',
+	mode: isDevelopment ? 'development' : 'production',
+	devtool: isDevelopment ? 'inline-source-map' : 'hidden-source-map',
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
@@ -45,15 +39,19 @@ const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
 							'@babel/preset-env',
 							{
 								targets: { browsers: ['last 2 chrome versions'] },
-								debug: isDev,
+								debug: isDevelopment,
 							},
 						],
 						'@babel/preset-react',
 						'@babel/preset-typescript',
 					],
-					plugins: [isDev && 'react-refresh/babel', isDev && 'babel-plugin-styled-components'].filter(Boolean),
+					env: {
+						development: {
+							plugins: [require.resolve('react-refresh/babel'), 'babel-plugin-styled-components'],
+						},
+					},
 				},
-				exclude: ['/node_modules/'],
+				exclude: ['/node_modules'],
 			},
 			{
 				test: /\.css?$/,
@@ -76,6 +74,9 @@ const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
 		],
 	},
 	plugins: [
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: isDevelopment ? 'development' : 'production',
+		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
 		}),
@@ -85,10 +86,8 @@ const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
 		new webpack.DefinePlugin({
 			'process.env': JSON.stringify(dotenv.config().parsed),
 		}),
-		new WebpackManifestPlugin(),
-		isDev && new webpack.HotModuleReplacementPlugin(),
-		new ReactRefreshWebpackPlugin(),
-		isAnalyzeMode &&
+		isDevelopment && new ReactRefreshWebpackPlugin(),
+		!isDevelopment &&
 			new BundleAnalyzerPlugin({
 				generateStatsFile: true,
 				statsFilename: 'bundle-stats.json',
@@ -96,26 +95,16 @@ const getConfig = ({ isDev, isAnalyzeMode }: WebpackMode) => ({
 	].filter(Boolean),
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: 'bundle.[name].[chunkhash].js',
+		filename: isDevelopment ? '[name].js' : 'bundle.[name].[chunkhash].js',
 		chunkFilename: 'chunk.[name].[chunkhash].js',
-		publicPath: './',
+		publicPath: isDevelopment ? '/dist/' : './',
 		clean: true,
 	},
 	devServer: {
-		static: path.join(__dirname, 'dist'),
 		historyApiFallback: true,
 		port: 3000,
 		open: true,
 		compress: true,
-		hot: true,
 	},
-});
-
-module.exports = (env: any, argv: any) => {
-	const config = getConfig({
-		isDev: argv.mode === 'development',
-		isAnalyzeMode: env.bundleAnalyze,
-	});
-
-	return config;
 };
+export default config;
