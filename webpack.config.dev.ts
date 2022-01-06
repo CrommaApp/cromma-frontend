@@ -3,15 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const dotenv = require('dotenv');
-
-const isDevelopment = process.env.NODE_ENV !== 'production';
 
 const config = {
 	name: 'cromma',
-	mode: isDevelopment ? 'development' : 'production',
-	devtool: isDevelopment ? 'inline-source-map' : 'hidden-source-map',
+	mode: 'development',
+	devtool: 'inline-source-map',
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
 		alias: {
@@ -39,7 +36,7 @@ const config = {
 							'@babel/preset-env',
 							{
 								targets: { browsers: ['last 2 chrome versions'] },
-								debug: isDevelopment,
+								debug: true,
 							},
 						],
 						'@babel/preset-react',
@@ -75,7 +72,7 @@ const config = {
 	},
 	plugins: [
 		new webpack.EnvironmentPlugin({
-			NODE_ENV: isDevelopment ? 'development' : 'production',
+			NODE_ENV: 'development',
 		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
@@ -86,18 +83,13 @@ const config = {
 		new webpack.DefinePlugin({
 			'process.env': JSON.stringify(dotenv.config().parsed),
 		}),
-		isDevelopment && new ReactRefreshWebpackPlugin(),
-		!isDevelopment &&
-			new BundleAnalyzerPlugin({
-				generateStatsFile: true,
-				statsFilename: 'bundle-stats.json',
-			}),
-	].filter(Boolean),
+		new ReactRefreshWebpackPlugin(),
+	],
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: isDevelopment ? '[name].js' : 'bundle.[name].[chunkhash].js',
+		filename: '[name].js',
 		chunkFilename: 'chunk.[name].[chunkhash].js',
-		publicPath: isDevelopment ? '/dist/' : './',
+		publicPath: '/dist/',
 		clean: true,
 	},
 	devServer: {

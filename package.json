@@ -6,8 +6,8 @@
 	"author": "numeru",
 	"license": "MIT",
 	"scripts": {
-		"dev": "webpack serve --env development",
-		"build": "NODE_ENV=production webpack",
+		"dev": "webpack serve --config webpack.config.dev.ts",
+		"build": "webpack  --config webpack.config.prod.ts",
 		"test": "jest --watch"
 	},
 	"dependencies": {
