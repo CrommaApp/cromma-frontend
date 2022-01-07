@@ -25,7 +25,7 @@ const config = {
 		},
 	},
 	entry: {
-		app: './src/index.tsx',
+		main: './src/index.tsx',
 	},
 	module: {
 		rules: [
@@ -44,7 +44,7 @@ const config = {
 						'@babel/preset-typescript',
 					],
 				},
-				exclude: ['/node_modules', '/tests'],
+				exclude: ['/node_modules'],
 			},
 			{
 				test: /\.css?$/,
@@ -126,6 +126,10 @@ const config = {
 				},
 			},
 		},
+	},
+	performance: {
+		maxEntrypointSize: 512000,
+		maxAssetSize: 512000,
 	},
 };
 export default config;
