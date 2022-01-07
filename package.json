@@ -9,7 +9,7 @@
 		"dev": "webpack serve --config webpack.config.dev.ts",
 		"build": "webpack  --config webpack.config.prod.ts",
 		"test": "jest --watch",
-		"deploy": "aws s3 sync ./build s3://cromma --profile=cromma-s3-user"
+		"deploy": "aws s3 sync ./dist s3://cromma --profile=cromma-s3-user"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.14.1",
