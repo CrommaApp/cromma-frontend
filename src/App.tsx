@@ -59,10 +59,10 @@ const App = ({ authService }: Props) => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="post/write">
+						<Route exact path="/post/write">
 							<PostWrite />
 						</Route>
-						<Route exact path="post/:id">
+						<Route exact path="/post/:id">
 							<PostDetail />
 						</Route>
 						<Redirect path="*" to="/" />

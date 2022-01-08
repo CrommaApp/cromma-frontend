@@ -1,58 +1,10 @@
 import LoginModal from '@components/features/login/login-modal';
 import React, { ReactNode, useCallback, useState } from 'react';
-import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
 import AuthService from '@services/auth/auth-service';
 import { Link } from 'react-router-dom';
-
-const LayoutWrapper = styled.div`
-	width: 100%;
-	height: 100vh;
-	display: flex;
-
-	& > main {
-		position: relative;
-		width: 75%;
-		height: 100%;
-		background-color: #eeeeee;
-
-		@media screen and (max-width: 768px) {
-			width: 100%;
-		}
-	}
-`;
-
-const LayoutLeftMenu = styled.div`
-	width: 25%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #dddddd;
-	padding: 5% 0;
-	font-size: 1rem;
-	color: #aaaaaa;
-
-	& > p {
-		width: 100%;
-		background-color: white;
-		margin: 0;
-		padding: 12% 0;
-		text-align: center;
-	}
-
-	& > button {
-		font-size: 1rem;
-		color: #aaaaaa;
-		background-color: transparent;
-	}
-
-	@media screen and (max-width: 768px) {
-		display: none;
-	}
-`;
+import { LayoutLeftMenu, LayoutNavigation, LayoutUserState, LayoutWrapper } from './styled';
 
 type Props = {
 	authService: AuthService;
@@ -88,17 +40,20 @@ const Layout = ({ authService, children }: Props) => {
 		<>
 			<LayoutWrapper aria-hidden={isModalVisible}>
 				<LayoutLeftMenu>
-					<p>{user.isLogin ? user.id : '로그인 해주세요'}</p>
-					<nav>
-						<ul>
-							<li>
-								<Link to="/">홈</Link>
-							</li>
-							<li>
-								<Link to="/post/write">게시글 작성</Link>
-							</li>
-						</ul>
-					</nav>
+					<div>
+						<LayoutUserState>{user.isLogin ? user.id : '로그인 해주세요'}</LayoutUserState>
+						<LayoutNavigation>
+							<ul>
+								<li>
+									<Link to="/">홈</Link>
+								</li>
+								<li>
+									<Link to="/post/write">게시글 작성</Link>
+								</li>
+							</ul>
+						</LayoutNavigation>
+					</div>
+
 					{user.isLogin ? (
 						<button type="button" onClick={logout}>
 							로그아웃
