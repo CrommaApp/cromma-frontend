@@ -1,42 +1,24 @@
 import React from 'react';
 import { Post } from '@services/post/types';
-import styled from 'styled-components';
+import { PostDetailContentWrapper } from './styled';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@stores/user';
 
 type Props = {
 	post: Post;
+	deletePost: () => Promise<void>;
 };
 
-const PostDetailContentWrapper = styled.article`
-	width: 100%;
-	height: 100%;
-	padding: 0 20%;
+const PostDetailContent = ({ post, deletePost }: Props) => {
+	const user = useRecoilValue(userState);
 
-	& > h2 {
-		font-size: 1.8rem;
-		margin: 0 0 1% 0;
-
-		@media screen and (max-width: 768px) {
-			font-size: 1.5rem;
-		}
-	}
-
-	& > time {
-		font-size: 0.9rem;
-		color: #aaaaaa;
-	}
-
-	& > p {
-		font-size: 1.1rem;
-		overflow-wrap: break-word;
-	}
-`;
-
-const PostDetailContent = ({ post }: Props) => {
 	return (
 		<PostDetailContentWrapper>
 			<h2>{post.title}</h2>
 			<time dateTime={post.createdAt}>{post.createdAt}</time>
+			<p>{post.User.userId}</p>
 			<p>{post.content}</p>
+			{user.id === post.User.userId && <button onClick={deletePost}>삭제하기</button>}
 		</PostDetailContentWrapper>
 	);
 };

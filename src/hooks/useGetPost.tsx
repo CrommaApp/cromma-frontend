@@ -20,6 +20,10 @@ const useGetPost = (): ReturnTypes => {
 		content: '',
 		createdAt: '',
 		updatedAt: '',
+		UserId: 0,
+		User: {
+			userId: '',
+		},
 	});
 
 	const [postId, setPostId] = useState(params?.postId || '');

@@ -1,5 +1,4 @@
 import { BasicResult } from '@services/api';
-import { Post } from '@services/post/types';
 
 type userInfo = {
 	createdAt: string;

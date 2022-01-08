@@ -6,7 +6,11 @@ export type Post = {
 	content: string;
 	createdAt: string;
 	updatedAt: string;
+	User: { userId: string };
+	UserId: number;
 };
+
+export type PostWithoutUser = Omit<Post, 'User'>;
 
 export type GetAllPostsResult = BasicResult & {
 	data: Post[] & { UserId: string };
@@ -18,7 +22,7 @@ export type UploadPostRequest = {
 };
 
 export type UploadPostResult = BasicResult & {
-	data: Post;
+	data: PostWithoutUser;
 };
 
 export type getPostRequest = {
