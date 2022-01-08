@@ -1,15 +1,13 @@
-import React, { useCallback } from 'react';
-import SearchForm from '@components/features/form/search-form';
-import SearchNewsService from '@services/search/search-news';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import PostList from '@components/features/home/post-list';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@stores/user';
+import Loading from '@components/features/home/loading';
+import { Post } from '@services/post/types';
 
-const HomeContainer = styled.section`
+const HomeWrapper = styled.section`
 	width: 100%;
 	height: 100%;
-	padding: 20% 2% 0 2%;
+	padding: 8% 2% 0 2%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -19,31 +17,103 @@ const HomeContainer = styled.section`
 		margin: 0;
 		font-family: var(--font-sans-bold);
 		font-size: 2.75rem;
-	}
 
-	& > h2 {
-		font-family: var(--font-sans-bold);
-		font-size: 1.375rem;
+		@media screen and (max-width: 768px) {
+			font-size: 2.5rem;
+		}
+
+		@media screen and (max-width: 480px) {
+			font-size: 2rem;
+		}
 	}
 `;
 
-type Props = {
-	searchNewsService: SearchNewsService;
-};
+const PageButtons = styled.div`
+	width: 100%;
+	padding: 3% 12%;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	background-color: white;
 
-const Home = ({ searchNewsService }: Props) => {
-	const history = useHistory();
+	& > button {
+		width: 20%;
+		padding: 3% 0;
+		font-size: 1.5rem;
+		font-family: var(--font-sans-bold);
+		border-radius: 100px;
+		border: 1px solid #dddddd;
 
-	const moveToReultPage = useCallback((keyword: string) => {
-		history.push(`/result/${keyword}`);
-	}, []);
+		&:first-child {
+			background-color: white;
+			color: #888888;
+		}
+		&:last-child {
+			background-color: #dddddd;
+			color: white;
+		}
+
+		@media screen and (max-width: 480px) {
+			font-size: 1.2rem;
+			width: 32%;
+		}
+	}
+
+	& > p {
+		margin: 0;
+		font-size: 1.2rem;
+
+		@media screen and (max-width: 480px) {
+			font-size: 1rem;
+		}
+	}
+`;
+
+const Home = () => {
+	const [postList, setPostList] = useState<Post[]>([]);
+	const isEmpty = useMemo(() => postList?.length === 0, [postList]);
+	const isReachingEnd = useMemo(() => isEmpty || (postList && postList?.length < 10) || false, [isEmpty, postList]);
+
+	const [curPage, setCurPage] = useState(1);
+	const handleChangeCurPage = useCallback(
+		(pageNum: number) => {
+			if (isReachingEnd) {
+				return;
+			}
+			setCurPage(pageNum);
+		},
+		[isReachingEnd],
+	);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	const getAllSearchList = async () => {
+		setIsLoading(true);
+
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		getAllSearchList();
+	}, [curPage]);
 
 	return (
-		<HomeContainer>
-			<h1>Cromma</h1>
-			<h2 id="search_guide">Please enter related keyword</h2>
-			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
-		</HomeContainer>
+		<HomeWrapper>
+			<h1 id="search_result">게시글 목록</h1>
+			{isLoading ? <Loading /> : <PostList postList={postList} />}
+			<PageButtons>
+				<button type="button" onClick={() => handleChangeCurPage(curPage - 1)}>
+					prev
+				</button>
+				<p data-testid="current_page">{curPage}</p>
+				<button type="button" onClick={() => handleChangeCurPage(curPage + 1)}>
+					next
+				</button>
+			</PageButtons>
+		</HomeWrapper>
 	);
 };
 

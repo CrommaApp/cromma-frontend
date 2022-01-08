@@ -1,8 +1,8 @@
+import { Post } from '@services/post/types';
 import React from 'react';
-import { News } from 'src/types/result/types';
 import styled from 'styled-components';
 
-const SearchItemContainer = styled.li`
+const PostItemWrapper = styled.li`
 	width: 100%;
 	border: 1px solid #dddddd;
 	border-radius: 8px;
@@ -33,18 +33,18 @@ const SearchItemContainer = styled.li`
 `;
 
 type Props = {
-	news: News;
+	post: Post;
 	index: number;
 };
 
-const SearchItem = ({ news, index }: Props) => {
+const PostItem = ({ post, index }: Props) => {
 	return (
-		<SearchItemContainer aria-labelledby={`news_title_${index}`}>
-			<h2 id={`news_title_${index}`}>{news.title.replace(/(<([^>]+)>)/gi, '')}</h2>
-			<time dateTime={news.wrt_dt}>{news.wrt_dt}</time>
-			<p>{news.txt_origin_cn.replace(/&nbsp;/gi, ' ')}</p>
-		</SearchItemContainer>
+		<PostItemWrapper aria-labelledby={`post_title_${index}`}>
+			<h2 id={`post_title_${index}`}>{post.title}</h2>
+			{/* <time dateTime={post.createdAt}>{post.createdAt}</time>
+			<p>{post.content}</p> */}
+		</PostItemWrapper>
 	);
 };
 
-export default SearchItem;
+export default PostItem;

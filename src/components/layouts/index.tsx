@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
 import AuthService from '@services/auth/auth-service';
+import { Link } from 'react-router-dom';
 
-const LayoutContainer = styled.div`
+const LayoutWrapper = styled.div`
 	width: 100%;
 	height: 100vh;
 	display: flex;
@@ -79,16 +80,25 @@ const Layout = ({ authService, children }: Props) => {
 				...prev,
 				isLogin: false,
 				id: '',
-				recentKeywords: [],
 			};
 		});
 	};
 
 	return (
 		<>
-			<LayoutContainer aria-hidden={isModalVisible}>
+			<LayoutWrapper aria-hidden={isModalVisible}>
 				<LayoutLeftMenu>
 					<p>{user.isLogin ? user.id : '로그인 해주세요'}</p>
+					<nav>
+						<ul>
+							<li>
+								<Link to="/">홈</Link>
+							</li>
+							<li>
+								<Link to="/post/write">게시글 작성</Link>
+							</li>
+						</ul>
+					</nav>
 					{user.isLogin ? (
 						<button type="button" onClick={logout}>
 							로그아웃
@@ -100,7 +110,7 @@ const Layout = ({ authService, children }: Props) => {
 					)}
 				</LayoutLeftMenu>
 				<main>{children}</main>
-			</LayoutContainer>
+			</LayoutWrapper>
 			{isModalVisible && <LoginModal authService={authService} closeLoginModal={closeLoginModal} />}
 		</>
 	);

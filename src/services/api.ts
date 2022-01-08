@@ -13,8 +13,8 @@ const API_URL = {
 		login: '/user/login',
 		logout: '/user/logout',
 	},
-	search: {
-		keyword: '/keyword',
+	post: {
+		post: '/post',
 	},
 };
 
