@@ -11,7 +11,7 @@ type Props = {
 const LoginModal = ({ authService, closeLoginModal }: Props) => {
 	return (
 		<Modal onCloseModal={closeLoginModal}>
-			<h1 id="modal_label">Login</h1>
+			<h1 id="modal_label">로그인</h1>
 			<LoginForm authService={authService} closeLoginModal={closeLoginModal} />
 		</Modal>
 	);

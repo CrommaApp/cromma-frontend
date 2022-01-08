@@ -88,14 +88,14 @@ const Layout = ({ authService, children }: Props) => {
 		<>
 			<LayoutContainer aria-hidden={isModalVisible}>
 				<LayoutLeftMenu>
-					<p>{user.isLogin ? user.id : 'Please Login'}</p>
+					<p>{user.isLogin ? user.id : '로그인 해주세요'}</p>
 					{user.isLogin ? (
 						<button type="button" onClick={logout}>
-							Logout
+							로그아웃
 						</button>
 					) : (
 						<button type="button" onClick={showLoginModal}>
-							Login
+							회원가입/로그인
 						</button>
 					)}
 				</LayoutLeftMenu>

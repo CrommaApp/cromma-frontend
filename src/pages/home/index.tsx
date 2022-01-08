@@ -1,9 +1,8 @@
 import React, { useCallback } from 'react';
-import SearchForm from '@components/features/home/search-form';
+import SearchForm from '@components/features/form/search-form';
 import SearchNewsService from '@services/search/search-news';
 import styled from 'styled-components';
 import { useHistory } from 'react-router';
-import RecentKeywords from '@components/features/home/recent-keywords';
 import { useRecoilValue } from 'recoil';
 import { userState } from '@stores/user';
 
@@ -39,14 +38,11 @@ const Home = ({ searchNewsService }: Props) => {
 		history.push(`/result/${keyword}`);
 	}, []);
 
-	const { recentKeywords } = useRecoilValue(userState);
-
 	return (
 		<HomeContainer>
 			<h1>Cromma</h1>
 			<h2 id="search_guide">Please enter related keyword</h2>
 			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
-			<RecentKeywords recentKeywords={recentKeywords} moveToReultPage={moveToReultPage} />
 		</HomeContainer>
 	);
 };

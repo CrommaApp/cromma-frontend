@@ -116,7 +116,7 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 					/>
 					{!isIdValid && isFormSubmitted && (
 						<p id="id_error_msg" role="alert" aria-live="assertive">
-							The ID must consist of 4 to 10 letters in English or numbers
+							아이디는 4글자 이상 10글자 이하의 영어와 숫자 조합이어야 합니다.
 						</p>
 					)}
 				</LoginFormInput>
@@ -137,13 +137,13 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 					/>
 					{!isPasswordValid && isFormSubmitted && (
 						<p id="password_error_msg" role="alert" aria-live="assertive">
-							The password must consist of 4 to 10 letters in English or numbers
+							비밀번호는 4글자 이상 10글자 이하의 영어와 숫자 조합이어야 합니다.
 						</p>
 					)}
 				</LoginFormInput>
 			</ul>
 
-			<button type="submit">Login</button>
+			<button type="submit">로그인</button>
 		</LoginFormContainer>
 	);
 };
