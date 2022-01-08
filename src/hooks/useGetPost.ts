@@ -7,11 +7,9 @@ type Params = {
 	postId: string;
 };
 
-type ReturnTypes = [Post, () => Promise<void>];
-
 const postService = new PostService();
 
-const useGetPost = (): ReturnTypes => {
+const useGetPost = () => {
 	const params = useParams<Params>();
 
 	const [post, setPost] = useState<Post>({
@@ -55,7 +53,11 @@ const useGetPost = (): ReturnTypes => {
 		}
 	};
 
-	return [post, getPost];
+	useEffect(() => {
+		getPost();
+	}, []);
+
+	return post;
 };
 
 export default useGetPost;

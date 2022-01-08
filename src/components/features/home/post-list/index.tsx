@@ -5,7 +5,6 @@ import { Post } from '@services/post/types';
 
 const PostListWrapper = styled.ul`
 	width: 100%;
-	height: 100%;
 `;
 
 type Props = {

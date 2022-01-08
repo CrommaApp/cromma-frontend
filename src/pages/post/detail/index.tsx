@@ -5,13 +5,9 @@ import useGetPost from '@hooks/useGetPost';
 import useDeletePost from '@hooks/useDeletePost';
 
 const PostDetail = () => {
-	const [post, getPost] = useGetPost();
+	const post = useGetPost();
 
 	const deletePost = useDeletePost(post.id);
-
-	useEffect(() => {
-		getPost();
-	}, []);
 
 	return (
 		<>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PostDetailContentWrapper = styled.article`
 	width: 100%;
 	height: 100%;
-	padding: 0 20%;
+	padding: 8% 20%;
 	position: relative;
 
 	& > h2 {
@@ -16,15 +16,13 @@ export const PostDetailContentWrapper = styled.article`
 	}
 
 	& > time {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 		color: #aaaaaa;
 	}
 
 	& > p {
-		&:last-child {
-			font-size: 1.1rem;
-			overflow-wrap: break-word;
-		}
+		margin: 3% 0;
+		font-size: 0.9rem;
 	}
 
 	& > button {

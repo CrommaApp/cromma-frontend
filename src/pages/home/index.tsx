@@ -1,55 +1,37 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import PostList from '@components/features/home/post-list';
-import Loading from '@components/features/home/loading';
-import { Post } from '@services/post/types';
-import { PageButtons } from './styled';
+import { MorePostsButton } from './styled';
 import { ContentWrapper } from '@components/shared/content-wrapper/styled';
+import useGetAllPosts from '@hooks/useGetAllPosts';
+import PostsState from '@components/features/home/posts-state';
 
 const Home = () => {
-	const [postList, setPostList] = useState<Post[]>([]);
-	const isEmpty = useMemo(() => postList?.length === 0, [postList]);
-	const isReachingEnd = useMemo(() => isEmpty || (postList && postList?.length < 10) || false, [isEmpty, postList]);
+	const [allPosts, isLoading, onClickMorePostsButton] = useGetAllPosts();
 
-	const [curPage, setCurPage] = useState(1);
-	const handleChangeCurPage = useCallback(
-		(pageNum: number) => {
-			if (isReachingEnd) {
-				return;
-			}
-			setCurPage(pageNum);
-		},
-		[isReachingEnd],
-	);
+	const showPostsState = () => {
+		if (isLoading) {
+			return <PostsState statement="불러오는 중..." />;
+		}
 
-	const [isLoading, setIsLoading] = useState(false);
+		if (allPosts.length === 0) {
+			return <PostsState statement="게시글이 없습니다." />;
+		}
 
-	const getAllSearchList = async () => {
-		setIsLoading(true);
-
-		setIsLoading(false);
+		return (
+			<>
+				<PostList postList={allPosts} />
+				<MorePostsButton type="button" onClick={onClickMorePostsButton}>
+					더보기
+				</MorePostsButton>
+			</>
+		);
 	};
 
-	useEffect(() => {
-		getAllSearchList();
-	}, [curPage]);
-
 	return (
-		<>
-			<ContentWrapper>
-				<h1 className="a11y-hidden">전체 게시글 목록</h1>
-				{isLoading ? <Loading /> : <PostList postList={postList} />}
-			</ContentWrapper>
-
-			<PageButtons>
-				<button type="button" onClick={() => handleChangeCurPage(curPage - 1)}>
-					이전
-				</button>
-				<p data-testid="current_page">{curPage}</p>
-				<button type="button" onClick={() => handleChangeCurPage(curPage + 1)}>
-					다음
-				</button>
-			</PageButtons>
-		</>
+		<ContentWrapper>
+			<h1 className="a11y-hidden">전체 게시글 목록</h1>
+			{showPostsState()}
+		</ContentWrapper>
 	);
 };
 
