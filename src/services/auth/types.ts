@@ -2,7 +2,6 @@ import { BasicResult } from '@services/api';
 import { Post } from '@services/post/types';
 
 type userInfo = {
-	Keywords: Post[];
 	createdAt: string;
 	id: number;
 	updatedAt: string;

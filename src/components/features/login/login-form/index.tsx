@@ -40,7 +40,6 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 						...prev,
 						isLogin: true,
 						id: id,
-						recentKeywords: result.data.Keywords.slice(0, 5),
 					};
 				});
 
