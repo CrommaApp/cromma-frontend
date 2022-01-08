@@ -1,7 +1,13 @@
-import { GetAllPostsResult, UploadPostRequest, UploadPostResult, getPostRequest, deletePostRequest } from './types';
+import {
+	GetAllPostsResult,
+	UploadPostRequest,
+	UploadPostResult,
+	getPostRequest,
+	deletePostRequest,
+	getPostResult,
+} from './types';
 import axios, { AxiosInstance } from 'axios';
 import API_URL, { API_HOST, BasicResult } from '@services/api';
-import { getPostResult } from '@services/auth/types';
 
 class PostService {
 	private base: AxiosInstance;

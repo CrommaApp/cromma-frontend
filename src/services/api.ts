@@ -15,6 +15,7 @@ const API_URL = {
 	},
 	post: {
 		post: '/post',
+		posts: '/posts',
 	},
 };
 

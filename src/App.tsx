@@ -62,7 +62,7 @@ const App = ({ authService }: Props) => {
 						<Route exact path="/post/upload">
 							<PostUpload />
 						</Route>
-						<Route exact path="/post/:id">
+						<Route exact path="/post/:postId">
 							<PostDetail />
 						</Route>
 						<Redirect path="*" to="/" />

@@ -28,3 +28,7 @@ export type getPostRequest = {
 export type deletePostRequest = {
 	postId: string;
 };
+
+export type getPostResult = BasicResult & {
+	data: Post | null;
+};
