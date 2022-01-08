@@ -1,11 +1,4 @@
-import {
-	GetAllPostsResult,
-	UploadPostRequest,
-	UploadPostResult,
-	getPostRequest,
-	deletePostRequest,
-	getPostResult,
-} from './types';
+import { GetAllPostsResult, UploadPostRequest, UploadPostResult, getPostResult } from './types';
 import axios, { AxiosInstance } from 'axios';
 import API_URL, { API_HOST, BasicResult } from '@services/api';
 
@@ -21,16 +14,16 @@ class PostService {
 		this.postUrl = API_URL.post;
 	}
 
-	async getAllPosts() {
+	async getAllPosts(lastId: number) {
 		const { posts } = this.postUrl;
 
-		const response = await this.base.get(posts);
+		const response = await this.base.get(`${posts}/?lastId=${lastId}`);
 		const result: GetAllPostsResult = await response.data;
 
 		return result;
 	}
 
-	async getPost({ postId }: getPostRequest) {
+	async getPost(postId: string) {
 		const { post } = this.postUrl;
 
 		const response = await this.base.get(`${post}/${postId}`);
@@ -48,7 +41,7 @@ class PostService {
 		return result;
 	}
 
-	async deletePost({ postId }: deletePostRequest) {
+	async deletePost(postId: number) {
 		const { post } = this.postUrl;
 
 		const response = await this.base.delete(`${post}/${postId}`);

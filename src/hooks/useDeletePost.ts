@@ -4,20 +4,12 @@ import { useHistory } from 'react-router';
 
 const postService = new PostService();
 
-type Props = {
-	postId: string;
-};
-
-const useDeletePost = ({ postId }: Props) => {
+const useDeletePost = (postId: number) => {
 	const history = useHistory();
 
 	const deletePost = async () => {
 		try {
-			const requestData = {
-				postId,
-			};
-
-			const { statusCode, message } = await postService.deletePost(requestData);
+			const { statusCode, message } = await postService.deletePost(postId);
 
 			if (statusCode === 200) {
 				alert(message);

@@ -7,7 +7,7 @@ import useDeletePost from '@hooks/useDeletePost';
 const PostDetail = () => {
 	const [post, getPost] = useGetPost();
 
-	const deletePost = useDeletePost({ postId: `${post.id}` });
+	const deletePost = useDeletePost(post.id);
 
 	useEffect(() => {
 		getPost();

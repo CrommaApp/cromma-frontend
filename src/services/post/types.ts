@@ -25,14 +25,6 @@ export type UploadPostResult = BasicResult & {
 	data: PostWithoutUser;
 };
 
-export type getPostRequest = {
-	postId: string;
-};
-
-export type deletePostRequest = {
-	postId: string;
-};
-
 export type getPostResult = BasicResult & {
 	data: Post | null;
 };

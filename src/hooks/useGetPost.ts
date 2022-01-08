@@ -38,11 +38,7 @@ const useGetPost = (): ReturnTypes => {
 
 	const getPost = async () => {
 		try {
-			const requestData = {
-				postId,
-			};
-
-			const { data, statusCode } = await postService.getPost(requestData);
+			const { data, statusCode } = await postService.getPost(postId);
 
 			if (statusCode === 200 && data) {
 				const curPost = {
