@@ -10,21 +10,12 @@ const PostItemWrapper = styled.li`
 	padding: 3%;
 
 	& > h2 {
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		margin: 0 0 1% 0;
 
 		@media screen and (max-width: 768px) {
 			font-size: 1.3rem;
 		}
-	}
-
-	& > time {
-		font-size: 0.75rem;
-		color: #aaaaaa;
-	}
-
-	& > p {
-		font-size: 1rem;
 	}
 
 	@media screen and (max-width: 480px) {
@@ -41,8 +32,6 @@ const PostItem = ({ post, index }: Props) => {
 	return (
 		<PostItemWrapper aria-labelledby={`post_title_${index}`}>
 			<h2 id={`post_title_${index}`}>{post.title}</h2>
-			{/* <time dateTime={post.createdAt}>{post.createdAt}</time>
-			<p>{post.content}</p> */}
 		</PostItemWrapper>
 	);
 };
