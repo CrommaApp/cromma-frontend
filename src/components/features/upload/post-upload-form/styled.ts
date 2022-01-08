@@ -41,7 +41,7 @@ export const UploadFormInput = styled.li`
 		height: 200px;
 		border: 1px solid #dddddd;
 		outline: none;
-		padding: 2% 4%;
+		padding: 3%;
 		border-radius: 4px;
 		color: #888888;
 		resize: none;
