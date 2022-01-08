@@ -16,7 +16,6 @@ const config = {
 		alias: {
 			'@hooks': path.resolve(__dirname, 'src/hooks'),
 			'@components': path.resolve(__dirname, 'src/components'),
-			'@apis': path.resolve(__dirname, 'src/apis'),
 			'@pages': path.resolve(__dirname, 'src/pages'),
 			'@utils': path.resolve(__dirname, 'src/utils'),
 			'@stores': path.resolve(__dirname, 'src/stores'),
