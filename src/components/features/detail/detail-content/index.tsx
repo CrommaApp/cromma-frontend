@@ -16,9 +16,13 @@ const PostDetailContent = ({ post, deletePost }: Props) => {
 		<PostDetailContentWrapper>
 			<h2>{post.title}</h2>
 			<time dateTime={post.createdAt}>{post.createdAt}</time>
-			<p>{post.User.userId}</p>
+			<p>작성자 : {post.User.userId}</p>
 			<p>{post.content}</p>
-			{user.id === post.User.userId && <button onClick={deletePost}>삭제하기</button>}
+			{user.id === post.User.userId && (
+				<button type="button" onClick={deletePost}>
+					삭제하기
+				</button>
+			)}
 		</PostDetailContentWrapper>
 	);
 };
