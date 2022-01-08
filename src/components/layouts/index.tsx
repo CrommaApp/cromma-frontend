@@ -48,7 +48,7 @@ const Layout = ({ authService, children }: Props) => {
 									<Link to="/">홈</Link>
 								</li>
 								<li>
-									<Link to="/post/write">게시글 작성</Link>
+									<Link to="/post/upload">게시글 작성</Link>
 								</li>
 							</ul>
 						</LayoutNavigation>

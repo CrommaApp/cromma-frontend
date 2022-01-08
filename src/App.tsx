@@ -6,7 +6,7 @@ import Layout from '@components/layouts';
 import AuthService from '@services/auth/auth-service';
 import { useSetRecoilState } from 'recoil';
 import { userState } from '@stores/user';
-import PostWrite from '@pages/post/write';
+import PostUpload from '@pages/post/upload';
 import PostDetail from '@pages/post/detail';
 
 type Props = {
@@ -59,8 +59,8 @@ const App = ({ authService }: Props) => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/post/write">
-							<PostWrite />
+						<Route exact path="/post/upload">
+							<PostUpload />
 						</Route>
 						<Route exact path="/post/:id">
 							<PostDetail />
