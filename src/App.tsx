@@ -1,9 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import './index.css';
 import { Redirect, Route, Switch } from 'react-router';
-// import Home from '@pages/home';
-// import PostUpload from '@pages/post/upload';
-// import PostDetail from '@pages/post/detail';
 import Layout from '@components/layouts';
 import AuthService from '@services/auth/auth-service';
 import { useSetRecoilState } from 'recoil';

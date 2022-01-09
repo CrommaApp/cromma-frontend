@@ -95,7 +95,7 @@ const config = {
 		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.[name].[chunkhash].js',
 		chunkFilename: 'chunk.[name].[chunkhash].js',
-		publicPath: './',
+		publicPath: '/',
 		clean: true,
 	},
 	devServer: {
