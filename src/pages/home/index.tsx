@@ -1,53 +1,37 @@
-import React, { useCallback } from 'react';
-import SearchForm from '@components/features/home/search-form';
-import SearchNewsService from '@services/search/search-news';
-import styled from 'styled-components';
-import { useHistory } from 'react-router';
-import RecentKeywords from '@components/features/home/recent-keywords';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@stores/user';
+import React from 'react';
+import PostList from '@components/features/home/post-list';
+import { MorePostsButton } from './styled';
+import { ContentWrapper } from '@components/shared/content-wrapper/styled';
+import useGetAllPosts from '@hooks/useGetAllPosts';
+import PostsState from '@components/features/home/posts-state';
 
-const HomeContainer = styled.section`
-	width: 100%;
-	height: 100%;
-	padding: 20% 2% 0 2%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: #888888;
+const Home = () => {
+	const [allPosts, isLoading, onClickMorePostsButton] = useGetAllPosts();
 
-	& > h1 {
-		margin: 0;
-		font-family: var(--font-sans-bold);
-		font-size: 2.75rem;
-	}
+	const showPostsState = () => {
+		if (isLoading) {
+			return <PostsState statement="불러오는 중..." />;
+		}
 
-	& > h2 {
-		font-family: var(--font-sans-bold);
-		font-size: 1.375rem;
-	}
-`;
+		if (allPosts.length === 0) {
+			return <PostsState statement="게시글이 없습니다." />;
+		}
 
-type Props = {
-	searchNewsService: SearchNewsService;
-};
-
-const Home = ({ searchNewsService }: Props) => {
-	const history = useHistory();
-
-	const moveToReultPage = useCallback((keyword: string) => {
-		history.push(`/result/${keyword}`);
-	}, []);
-
-	const { recentKeywords } = useRecoilValue(userState);
+		return (
+			<>
+				<PostList postList={allPosts} />
+				<MorePostsButton type="button" onClick={onClickMorePostsButton}>
+					더보기
+				</MorePostsButton>
+			</>
+		);
+	};
 
 	return (
-		<HomeContainer>
-			<h1>Cromma</h1>
-			<h2 id="search_guide">Please enter related keyword</h2>
-			<SearchForm searchNewsService={searchNewsService} moveToReultPage={moveToReultPage} />
-			<RecentKeywords recentKeywords={recentKeywords} moveToReultPage={moveToReultPage} />
-		</HomeContainer>
+		<ContentWrapper>
+			<h1 className="a11y-hidden">전체 게시글 목록</h1>
+			{showPostsState()}
+		</ContentWrapper>
 	);
 };
 

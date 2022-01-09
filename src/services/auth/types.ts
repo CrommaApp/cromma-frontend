@@ -1,8 +1,6 @@
 import { BasicResult } from '@services/api';
-import { Keyword } from 'src/types/home/types';
 
 type userInfo = {
-	Keywords: Keyword[];
 	createdAt: string;
 	id: number;
 	updatedAt: string;

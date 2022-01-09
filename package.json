@@ -5,6 +5,17 @@
 	"main": "index.js",
 	"author": "numeru",
 	"license": "MIT",
+	"contributors": [
+		{
+			"name": "Younggwang Choi",
+			"email": "numeru@naver.com",
+			"url": "https://github.com/numeru"
+		}
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CrommaApp/cromma-frontend"
+	},
 	"scripts": {
 		"dev": "webpack serve --config webpack.config.dev.ts",
 		"build": "webpack  --config webpack.config.prod.ts",

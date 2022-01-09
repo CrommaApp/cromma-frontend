@@ -65,18 +65,24 @@ button {
 
 @font-face {
 	font-family: 'sans_light';
-	src: url('./assets/fonts/OpenSans/OpenSans-Light.ttf');
-	font-display: swap;
+	src: url('./assets/fonts/OpenSans/OpenSans-Light.woff2') format('woff2'),
+		url('./assets/fonts/OpenSans/OpenSans-Light.woff') format('woff'),
+		url('./assets/fonts/OpenSans/OpenSans-Light.ttf') format('ttf');
+	font-display: fallback;
 }
 
 @font-face {
 	font-family: 'sans_regular';
-	src: url('./assets/fonts/OpenSans/OpenSans-Regular.ttf');
-	font-display: swap;
+	src: url('./assets/fonts/OpenSans/OpenSans-Regular.woff2') format('woff2'),
+		url('./assets/fonts/OpenSans/OpenSans-Regular.woff') format('woff'),
+		url('./assets/fonts/OpenSans/OpenSans-Regular.ttf') format('ttf');
+	font-display: fallback;
 }
 
 @font-face {
 	font-family: 'sans_bold';
-	src: url('./assets/fonts/OpenSans/OpenSans-Bold.ttf');
-	font-display: swap;
+	src: url('./assets/fonts/OpenSans/OpenSans-Bold.woff2') format('woff2'),
+		url('./assets/fonts/OpenSans/OpenSans-Bold.woff') format('woff'),
+		url('./assets/fonts/OpenSans/OpenSans-Bold.ttf') format('ttf');
+	font-display: fallback;
 }

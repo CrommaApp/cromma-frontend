@@ -11,7 +11,6 @@ module.exports = {
 	moduleNameMapper: {
 		'@hooks/(.*)': '<rootDir>/src/hooks/$1',
 		'@components/(.*)': '<rootDir>/src/components/$1',
-		'@apis/(.*)': '<rootDir>/src/apis/$1',
 		'@pages/(.*)': '<rootDir>/src/pages/$1',
 		'@utils/(.*)': '<rootDir>/src/utils/$1',
 		'@stores/(.*)': '<rootDir>/src/stores/$1',

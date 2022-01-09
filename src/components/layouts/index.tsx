@@ -1,57 +1,10 @@
-import LoginModal from '@components/features/login/login-modal';
 import React, { ReactNode, useCallback, useState } from 'react';
-import styled from 'styled-components';
+import LoginModal from '@components/features/login/login-modal';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
 import AuthService from '@services/auth/auth-service';
-
-const LayoutContainer = styled.div`
-	width: 100%;
-	height: 100vh;
-	display: flex;
-
-	& > main {
-		position: relative;
-		width: 75%;
-		height: 100%;
-		background-color: #eeeeee;
-
-		@media screen and (max-width: 768px) {
-			width: 100%;
-		}
-	}
-`;
-
-const LayoutLeftMenu = styled.div`
-	width: 25%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	background-color: #dddddd;
-	padding: 5% 0;
-	font-size: 1rem;
-	color: #aaaaaa;
-
-	& > p {
-		width: 100%;
-		background-color: white;
-		margin: 0;
-		padding: 12% 0;
-		text-align: center;
-	}
-
-	& > button {
-		font-size: 1rem;
-		color: #aaaaaa;
-		background-color: transparent;
-	}
-
-	@media screen and (max-width: 768px) {
-		display: none;
-	}
-`;
+import { Link } from 'react-router-dom';
+import { LayoutLeftMenu, LayoutNavigation, LayoutUserState, LayoutWrapper } from './styled';
 
 type Props = {
 	authService: AuthService;
@@ -79,28 +32,40 @@ const Layout = ({ authService, children }: Props) => {
 				...prev,
 				isLogin: false,
 				id: '',
-				recentKeywords: [],
 			};
 		});
 	};
 
 	return (
 		<>
-			<LayoutContainer aria-hidden={isModalVisible}>
+			<LayoutWrapper aria-hidden={isModalVisible}>
 				<LayoutLeftMenu>
-					<p>{user.isLogin ? user.id : 'Please Login'}</p>
+					<div>
+						<LayoutUserState>{user.isLogin ? user.id : '로그인 해주세요'}</LayoutUserState>
+						<LayoutNavigation>
+							<ul>
+								<li>
+									<Link to="/">홈</Link>
+								</li>
+								<li>
+									<Link to="/post/upload">게시글 작성</Link>
+								</li>
+							</ul>
+						</LayoutNavigation>
+					</div>
+
 					{user.isLogin ? (
 						<button type="button" onClick={logout}>
-							Logout
+							로그아웃
 						</button>
 					) : (
 						<button type="button" onClick={showLoginModal}>
-							Login
+							회원가입/로그인
 						</button>
 					)}
 				</LayoutLeftMenu>
 				<main>{children}</main>
-			</LayoutContainer>
+			</LayoutWrapper>
 			{isModalVisible && <LoginModal authService={authService} closeLoginModal={closeLoginModal} />}
 		</>
 	);
