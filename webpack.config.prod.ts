@@ -108,7 +108,6 @@ const config = {
 		splitChunks: {
 			cacheGroups: {
 				default: false,
-				vendors: false,
 				framework: {
 					chunks: 'all',
 					name: 'framework',
@@ -125,6 +124,7 @@ const config = {
 				},
 			},
 		},
+		runtimeChunk: { name: 'runtime' },
 	},
 	performance: {
 		maxEntrypointSize: 512000,

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
 import './index.css';
 import { Redirect, Route, Switch } from 'react-router';
-import Home from '@pages/home';
+// import Home from '@pages/home';
+// import PostUpload from '@pages/post/upload';
+// import PostDetail from '@pages/post/detail';
 import Layout from '@components/layouts';
 import AuthService from '@services/auth/auth-service';
 import { useSetRecoilState } from 'recoil';
 import { userState } from '@stores/user';
-import PostUpload from '@pages/post/upload';
-import PostDetail from '@pages/post/detail';
+
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@pages/home'));
+const PostUpload = lazy(() => import(/* webpackChunkName: "PostUpload" */ '@pages/post/upload'));
+const PostDetail = lazy(() => import(/* webpackChunkName: "PostDetail" */ '@pages/post/detail'));
 
 type Props = {
 	authService: AuthService;
@@ -55,18 +59,20 @@ const App = ({ authService }: Props) => {
 		<>
 			{isUserChecked && (
 				<Layout authService={authService}>
-					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/post/upload">
-							<PostUpload />
-						</Route>
-						<Route exact path="/post/:postId">
-							<PostDetail />
-						</Route>
-						<Redirect path="*" to="/" />
-					</Switch>
+					<Suspense fallback={null}>
+						<Switch>
+							<Route exact path="/">
+								<Home />
+							</Route>
+							<Route exact path="/post/upload">
+								<PostUpload />
+							</Route>
+							<Route exact path="/post/:postId">
+								<PostDetail />
+							</Route>
+							<Redirect path="*" to="/" />
+						</Switch>
+					</Suspense>
 				</Layout>
 			)}
 		</>
