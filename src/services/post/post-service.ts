@@ -1,6 +1,6 @@
-import { GetAllPostsResult, UploadPostRequest, UploadPostResult, getPostResult } from './types';
 import axios, { AxiosInstance } from 'axios';
 import API_URL, { API_HOST, BasicResult } from '@services/api';
+import { GetAllPostsResult, UploadPostRequest, UploadPostResult, getPostResult } from './types';
 
 class PostService {
 	private base: AxiosInstance;

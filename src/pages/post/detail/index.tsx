@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PostDetailContent from '@components/features/detail/detail-content';
 import { ContentWrapper } from '@components/shared/content-wrapper/styled';
 import useGetPost from '@hooks/useGetPost';

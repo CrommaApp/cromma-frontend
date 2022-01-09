@@ -1,5 +1,5 @@
-import { Post } from '@services/post/types';
 import React from 'react';
+import { Post } from '@services/post/types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 

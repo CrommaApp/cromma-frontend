@@ -1,5 +1,5 @@
-import LoginModal from '@components/features/login/login-modal';
 import React, { ReactNode, useCallback, useState } from 'react';
+import LoginModal from '@components/features/login/login-modal';
 import { useRecoilState } from 'recoil';
 import { userState } from '@stores/user';
 import AuthService from '@services/auth/auth-service';
