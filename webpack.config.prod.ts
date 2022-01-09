@@ -71,6 +71,7 @@ const config = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html',
+			favicon: './public/favicon.ico',
 		}),
 		new ForkTsCheckerWebpackPlugin({
 			async: false,
