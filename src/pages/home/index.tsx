@@ -6,7 +6,7 @@ import useGetAllPosts from '@hooks/useGetAllPosts';
 import PostsState from '@components/features/home/posts-state';
 
 const Home = () => {
-	const [allPosts, isLoading, onClickMorePostsButton] = useGetAllPosts();
+	const [allPosts, isReachingEnd, isLoading, onClickMorePostsButton] = useGetAllPosts();
 
 	const showPostsState = () => {
 		if (isLoading) {
@@ -20,9 +20,11 @@ const Home = () => {
 		return (
 			<>
 				<PostList postList={allPosts} />
-				<MorePostsButton type="button" onClick={onClickMorePostsButton}>
-					더보기
-				</MorePostsButton>
+				{!isReachingEnd && (
+					<MorePostsButton type="button" onClick={onClickMorePostsButton}>
+						더보기
+					</MorePostsButton>
+				)}
 			</>
 		);
 	};
