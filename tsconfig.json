@@ -20,6 +20,5 @@
 			"@assets/*": ["src/assets/*"],
 			"@services/*": ["src/services/*"]
 		}
-	},
-	"exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+	}
 }

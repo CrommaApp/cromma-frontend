@@ -1,0 +1,41 @@
+name: CI workflows
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Cache node modules
+        id: node-cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install Dependencies
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm i
+
+      - name: Run tests
+        run: npm run test:report
+
+      - name: Report test
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test result
+          path: junit.xml
+          fail-on-error: 'false'
+          reporter: jest-junit
+          token: ${{ secrets.GITHUB_TOKEN }}
