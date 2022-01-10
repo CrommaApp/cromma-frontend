@@ -22,6 +22,7 @@
 - Language : Javascript
 - Library & Framwork : Express
 - Database : MySQL
+- Deploy : EC2
 
 <br />
 
