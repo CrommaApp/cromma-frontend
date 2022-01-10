@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Snapshot 1`] = `
+<form
+  className="sc-bdvvtL zRvut"
+  onSubmit={[Function]}
+>
+  <ul>
+    <li
+      className="sc-gsDKAQ exJJSh"
+    >
+      <label
+        className="a11y-hidden"
+        htmlFor="login_input_id"
+      >
+        ID
+      </label>
+      <input
+        aria-errormessage="id_error_msg"
+        aria-invalid={false}
+        aria-required="true"
+        id="login_input_id"
+        onChange={[Function]}
+        placeholder="id"
+        type="text"
+        value=""
+      />
+    </li>
+    <li
+      className="sc-gsDKAQ exJJSh"
+    >
+      <label
+        className="a11y-hidden"
+        htmlFor="login_input_password"
+      >
+        Password
+      </label>
+      <input
+        aria-errormessage="password_error_msg"
+        aria-invalid={false}
+        aria-required="true"
+        id="login_input_password"
+        onChange={[Function]}
+        placeholder="passowrd"
+        type="password"
+        value=""
+      />
+    </li>
+  </ul>
+  <button
+    type="submit"
+  >
+    로그인
+  </button>
+</form>
+`;
