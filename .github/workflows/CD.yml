@@ -1,4 +1,4 @@
-name: CD workflow
+name: CD workflows
 
 on:
   pull_request:
