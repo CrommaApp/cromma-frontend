@@ -11,7 +11,7 @@
 ### Frontend
 
 - Language : Typescript
-- Library & Framwork : React, Styled-Components, Webpack, recoil
+- Library & Framwork : React, Styled-Components, Webpack, Recoil
 - Deploy : S3
 - CI/CD : Github actions
 
