@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
 
-type ReturnTypes = [Post[], boolean, () => Promise<void>];
+type ReturnTypes = [Post[], boolean, boolean, () => Promise<void>];
 
 const postService = new PostService();
 
@@ -56,7 +56,7 @@ const useGetAllPosts = (): ReturnTypes => {
 		addToAllPosts();
 	}, []);
 
-	return [allPosts, isLoading, onClickMorePostsButton];
+	return [allPosts, isReachingEnd, isLoading, onClickMorePostsButton];
 };
 
 export default useGetAllPosts;
