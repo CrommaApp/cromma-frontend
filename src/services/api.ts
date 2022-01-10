@@ -4,7 +4,7 @@ export type BasicResult = {
 	message: string;
 };
 
-export const API_HOST = 'http://localhost:3065';
+export const API_HOST = 'http://api.cromma.site';
 
 const API_URL = {
 	user: {
