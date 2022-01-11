@@ -3,6 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { useNavigate } from 'react-router-dom';
 import { errorStatusState, successStatusState } from '@stores/status';
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_201 } from '@constants/api';
 
 const postService = new PostService();
 
@@ -26,13 +27,13 @@ const useUploadPost = ({ title, content }: UploadPostInputs) => {
 
 			const { data, statusCode, message } = await postService.uploadPost(requestData);
 
-			if (statusCode === 201) {
+			if (statusCode === RESPONSE_STATUS_201) {
 				setSuccessStatus({ successMessage: message });
 				navigate(`/post/${data.id}`);
 			}
 		} catch (error) {
 			setErrorStatus({
-				errorMessage: '잠시 후 다시 시도해주세요.',
+				errorMessage: BASIC_ERROR_MESSAGE,
 			});
 		}
 	};

@@ -3,6 +3,13 @@ import AuthService from '@services/auth/auth-service';
 import { errorStatusState, successStatusState } from '@stores/status';
 import { userState } from '@stores/user';
 import { useSetRecoilState } from 'recoil';
+import {
+	RESPONSE_STATUS_403,
+	RESPONSE_STATUS_401,
+	RESPONSE_STATUS_200,
+	RESPONSE_STATUS_201,
+	BASIC_ERROR_MESSAGE,
+} from '@constants/api';
 
 const authService = new AuthService();
 
@@ -31,7 +38,7 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 				password,
 			});
 
-			if (result.statusCode === 200) {
+			if (result.statusCode === RESPONSE_STATUS_200) {
 				setUser((prev) => {
 					return {
 						...prev,
@@ -45,7 +52,15 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 				closeLoginModal();
 			}
 		} catch (error: any) {
-			setErrorStatus({ errorMessage: error.response?.data?.message || '잠시 후 다시 시도해주세요.' });
+			if (error.response.data.statusCode === RESPONSE_STATUS_401) {
+				setErrorStatus({
+					errorMessage: error.response.data.message,
+				});
+			} else {
+				setErrorStatus({
+					errorMessage: BASIC_ERROR_MESSAGE,
+				});
+			}
 		}
 	};
 
@@ -81,12 +96,16 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 					password,
 				});
 
-				if (result.statusCode === 201) {
+				if (result.statusCode === RESPONSE_STATUS_201) {
 					await login();
 				}
 			} catch (error: any) {
-				if (error.response.data.message === '이미 사용 중인 아이디입니다.') {
+				if (error.response.data.statusCode === RESPONSE_STATUS_403) {
 					await login();
+				} else {
+					setErrorStatus({
+						errorMessage: BASIC_ERROR_MESSAGE,
+					});
 				}
 			}
 		}

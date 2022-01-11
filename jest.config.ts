@@ -16,5 +16,6 @@ module.exports = {
 		'@stores/(.*)': '<rootDir>/src/stores/$1',
 		'@assets/(.*)': '<rootDir>/src/assets/$1',
 		'@services/(.*)': '<rootDir>/src/services/$1',
+		'@constants/(.*)': '<rootDir>/src/constants/$1',
 	},
 };

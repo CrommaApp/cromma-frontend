@@ -3,6 +3,7 @@ import AuthService from '@services/auth/auth-service';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { UserState, userState } from '@stores/user';
 import { errorStatusState, successStatusState } from '@stores/status';
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200 } from '@constants/api';
 
 const authService = new AuthService();
 
@@ -18,7 +19,7 @@ const useLogout = (): ReturnTypes => {
 		try {
 			const result = await authService.logout();
 
-			if (result.statusCode === 200) {
+			if (result.statusCode === RESPONSE_STATUS_200) {
 				setUser((prev) => {
 					return {
 						...prev,
@@ -31,7 +32,7 @@ const useLogout = (): ReturnTypes => {
 			}
 		} catch (error) {
 			setErrorStatus({
-				errorMessage: '잠시 후 다시 시도해주세요.',
+				errorMessage: BASIC_ERROR_MESSAGE,
 			});
 		}
 	};

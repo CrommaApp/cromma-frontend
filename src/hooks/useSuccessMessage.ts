@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { successStatusState } from '@stores/status';
+import { ALERT_TIME_OUT } from '@constants/alert';
 
 const useSuccessMessage = () => {
 	const [successStatus, setSuccessStatus] = useRecoilState(successStatusState);
@@ -12,7 +13,7 @@ const useSuccessMessage = () => {
 			setSuccessStatus({
 				successMessage: '',
 			});
-		}, 3000);
+		}, ALERT_TIME_OUT);
 
 		return () => {
 			clearTimeout(successTimer);
