@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { errorStatusState, successStatusState } from '@stores/status';
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_201 } from '@constants/api';
 
 const postService = new PostService();
 
@@ -10,7 +13,10 @@ type UploadPostInputs = {
 };
 
 const useUploadPost = ({ title, content }: UploadPostInputs) => {
-	const history = useHistory();
+	const navigate = useNavigate();
+
+	const setErrorStatus = useSetRecoilState(errorStatusState);
+	const setSuccessStatus = useSetRecoilState(successStatusState);
 
 	const uploadPost = async () => {
 		try {
@@ -21,12 +27,14 @@ const useUploadPost = ({ title, content }: UploadPostInputs) => {
 
 			const { data, statusCode, message } = await postService.uploadPost(requestData);
 
-			if (statusCode === 201) {
-				alert(message);
-				history.push(`/post/${data.id}`);
+			if (statusCode === RESPONSE_STATUS_201) {
+				setSuccessStatus({ successMessage: message });
+				navigate(`/post/${data.id}`);
 			}
 		} catch (error) {
-			console.error(error);
+			setErrorStatus({
+				errorMessage: BASIC_ERROR_MESSAGE,
+			});
 		}
 	};
 

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
+import { errorStatusState } from '@stores/status';
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_404 } from '@constants/api';
 
 type Params = {
 	postId: string;
@@ -27,18 +30,20 @@ const useGetPost = () => {
 	const [postId, setPostId] = useState(params?.postId || '');
 
 	useEffect(() => {
-		if (params) {
+		if (params.postId) {
 			setPostId(params.postId);
 		}
 	}, [params]);
 
-	const history = useHistory();
+	const navigate = useNavigate();
+
+	const setErrorStatus = useSetRecoilState(errorStatusState);
 
 	const getPost = async () => {
 		try {
 			const { data, statusCode } = await postService.getPost(postId);
 
-			if (statusCode === 200 && data) {
+			if (statusCode === RESPONSE_STATUS_200 && data) {
 				const curPost = {
 					...data,
 					createdAt: data.createdAt.slice(0, 10),
@@ -46,9 +51,15 @@ const useGetPost = () => {
 				setPost(curPost);
 			}
 		} catch (error: any) {
-			if (error.response.data.statusCode === 404) {
-				alert(error.response.data.message);
-				history.replace('/');
+			if (error.response.data.statusCode === RESPONSE_STATUS_404) {
+				setErrorStatus({
+					errorMessage: error.response.data.message,
+				});
+				navigate('/', { replace: true });
+			} else {
+				setErrorStatus({
+					errorMessage: BASIC_ERROR_MESSAGE,
+				});
 			}
 		}
 	};

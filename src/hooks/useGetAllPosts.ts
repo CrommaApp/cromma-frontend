@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
+import { errorStatusState } from '@stores/status';
+import { RESPONSE_STATUS_200 } from '@constants/api';
 
 type ReturnTypes = [Post[], boolean, boolean, () => Promise<void>];
 
@@ -15,12 +18,14 @@ const useGetAllPosts = (): ReturnTypes => {
 
 	const [isLoading, setIsLoading] = useState(false);
 
+	const setErrorStatus = useSetRecoilState(errorStatusState);
+
 	const getPosts = async (lastId: number) => {
 		setIsLoading(true);
 		try {
 			const { data, statusCode } = await postService.getAllPosts(lastId);
 
-			if (statusCode === 200 && data) {
+			if (statusCode === RESPONSE_STATUS_200 && data) {
 				const newPosts = data.map((post) => {
 					return {
 						...post,
@@ -32,7 +37,9 @@ const useGetAllPosts = (): ReturnTypes => {
 				return newPosts;
 			}
 		} catch (error: any) {
-			console.error(error);
+			setErrorStatus({
+				errorMessage: '게시글을 불러오는데 실패했습니다.',
+			});
 		} finally {
 			setIsLoading(false);
 		}

@@ -21,6 +21,7 @@ const getConfig = (isAnalyzeMode: boolean) => ({
 			'@stores': path.resolve(__dirname, 'src/stores'),
 			'@assets': path.resolve(__dirname, 'src/assets'),
 			'@services': path.resolve(__dirname, 'src/services'),
+			'@constants': path.resolve(__dirname, 'src/constants'),
 		},
 	},
 	entry: {

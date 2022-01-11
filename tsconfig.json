@@ -18,7 +18,8 @@
 			"@utils/*": ["src/utils/*"],
 			"@stores/*": ["src/stores/*"],
 			"@assets/*": ["src/assets/*"],
-			"@services/*": ["src/services/*"]
+			"@services/*": ["src/services/*"],
+			"@constants/*": ["src/constants/*"]
 		}
 	}
 }

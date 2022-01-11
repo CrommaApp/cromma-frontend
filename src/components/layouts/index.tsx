@@ -1,17 +1,16 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 import LoginModal from '@components/features/login/login-modal';
-import { useRecoilState } from 'recoil';
-import { userState } from '@stores/user';
-import AuthService from '@services/auth/auth-service';
 import { Link } from 'react-router-dom';
-import { LayoutLeftMenu, LayoutNavigation, LayoutUserState, LayoutWrapper } from './styled';
+import { LayoutAlertModal, LayoutLeftMenu, LayoutNavigation, LayoutUserState, LayoutWrapper } from './styled';
+import useErrorMessage from '@hooks/useErrorMessage';
+import useSuccessMessage from '@hooks/useSuccessMessage';
+import useLogout from '@hooks/useLogout';
 
 type Props = {
-	authService: AuthService;
 	children: ReactNode;
 };
 
-const Layout = ({ authService, children }: Props) => {
+const Layout = ({ children }: Props) => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const showLoginModal = useCallback(() => {
@@ -22,23 +21,26 @@ const Layout = ({ authService, children }: Props) => {
 		setIsModalVisible(false);
 	}, []);
 
-	const [user, setUser] = useRecoilState(userState);
+	const errorMessage = useErrorMessage();
+	const successsMessage = useSuccessMessage();
 
-	const logout = async () => {
-		const result = await authService.logout();
-
-		setUser((prev) => {
-			return {
-				...prev,
-				isLogin: false,
-				id: '',
-			};
-		});
-	};
+	const [user, onLogout] = useLogout();
 
 	return (
 		<>
 			<LayoutWrapper aria-hidden={isModalVisible}>
+				{errorMessage !== '' && (
+					<LayoutAlertModal role="alert">
+						<p>{errorMessage}</p>
+					</LayoutAlertModal>
+				)}
+
+				{successsMessage !== '' && (
+					<LayoutAlertModal role="status">
+						<p>{successsMessage}</p>
+					</LayoutAlertModal>
+				)}
+
 				<LayoutLeftMenu>
 					<div>
 						<LayoutUserState>{user.isLogin ? user.id : '로그인 해주세요'}</LayoutUserState>
@@ -55,7 +57,7 @@ const Layout = ({ authService, children }: Props) => {
 					</div>
 
 					{user.isLogin ? (
-						<button type="button" onClick={logout}>
+						<button type="button" onClick={onLogout}>
 							로그아웃
 						</button>
 					) : (
@@ -66,7 +68,7 @@ const Layout = ({ authService, children }: Props) => {
 				</LayoutLeftMenu>
 				<main>{children}</main>
 			</LayoutWrapper>
-			{isModalVisible && <LoginModal authService={authService} closeLoginModal={closeLoginModal} />}
+			{isModalVisible && <LoginModal closeLoginModal={closeLoginModal} />}
 		</>
 	);
 };
