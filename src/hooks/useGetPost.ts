@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
 import { useNavigate, useParams } from 'react-router-dom';
+import { errorStatusState } from '@stores/status';
 
 type Params = {
 	postId: string;
@@ -34,6 +36,8 @@ const useGetPost = () => {
 
 	const navigate = useNavigate();
 
+	const setErrorStatus = useSetRecoilState(errorStatusState);
+
 	const getPost = async () => {
 		try {
 			const { data, statusCode } = await postService.getPost(postId);
@@ -47,7 +51,9 @@ const useGetPost = () => {
 			}
 		} catch (error: any) {
 			if (error.response.data.statusCode === 404) {
-				alert(error.response.data.message);
+				setErrorStatus({
+					errorMessage: error.response.data.message,
+				});
 				navigate('/', { replace: true });
 			}
 		}
