@@ -1,6 +1,6 @@
 import { BasicResult } from '@services/api';
 
-type userInfo = {
+type UserInfo = {
 	createdAt: string;
 	id: number;
 	updatedAt: string;
@@ -12,9 +12,9 @@ export type SignRequest = {
 	password: string;
 };
 export type LoginResult = BasicResult & {
-	data: userInfo;
+	data: UserInfo;
 };
 
 export type getMyInfoResult = BasicResult & {
-	data: userInfo | null;
+	data: UserInfo | null;
 };
