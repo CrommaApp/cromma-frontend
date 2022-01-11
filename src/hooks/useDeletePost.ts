@@ -1,11 +1,11 @@
 import React from 'react';
 import PostService from '@services/post/post-service';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const postService = new PostService();
 
 const useDeletePost = (postId: number) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const deletePost = async () => {
 		try {
@@ -13,7 +13,7 @@ const useDeletePost = (postId: number) => {
 
 			if (statusCode === 200) {
 				alert(message);
-				history.replace(`/`);
+				navigate(`/`, { replace: true });
 			}
 		} catch (error) {
 			console.error(error);
