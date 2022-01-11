@@ -72,3 +72,18 @@ export const LayoutNavigation = styled.nav`
 		font-size: 0.9rem;
 	}
 `;
+
+export const LayoutAlertModal = styled.div`
+	position: fixed;
+	left: 50%;
+	z-index: 10;
+	padding: 1% 1.8%;
+	border: 0.5px solid #888888;
+	color: #888888;
+	border-radius: 16px;
+	background-color: white;
+	font-size: 0.9rem;
+	@media screen and (max-width: 1200px) {
+		padding: 12px 20px;
+	}
+`;

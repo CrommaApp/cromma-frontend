@@ -5,6 +5,7 @@ import Layout from '@components/layouts';
 import AuthService from '@services/auth/auth-service';
 import { useSetRecoilState } from 'recoil';
 import { userState } from '@stores/user';
+import { errorStatusState } from '@stores/status';
 
 const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@pages/home'));
 const PostUpload = lazy(() => import(/* webpackChunkName: "PostUpload" */ '@pages/post/upload'));
@@ -17,6 +18,8 @@ type Props = {
 const App = ({ authService }: Props) => {
 	const [isUserChecked, setIsUserChecked] = useState(false);
 	const setUser = useSetRecoilState(userState);
+
+	const setErrorStatus = useSetRecoilState(errorStatusState);
 
 	const checkUserState = async () => {
 		setIsUserChecked(false);
@@ -42,7 +45,9 @@ const App = ({ authService }: Props) => {
 				});
 			}
 		} catch (error) {
-			console.error(error);
+			setErrorStatus({
+				errorMessage: '내 정보를 불러오는데 실패했습니다.',
+			});
 		}
 
 		setIsUserChecked(true);

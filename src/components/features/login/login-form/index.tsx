@@ -1,6 +1,7 @@
-import AuthService from '@services/auth/auth-service';
-import { userState } from '@stores/user';
 import React, { useState } from 'react';
+import AuthService from '@services/auth/auth-service';
+import { errorStatusState, successStatusState } from '@stores/status';
+import { userState } from '@stores/user';
 import { useSetRecoilState } from 'recoil';
 import { LoginFormContainer, LoginFormInput } from './styled';
 
@@ -26,6 +27,8 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 	const setUser = useSetRecoilState(userState);
+	const setErrorStatus = useSetRecoilState(errorStatusState);
+	const setSuccessStatus = useSetRecoilState(successStatusState);
 
 	const login = async () => {
 		try {
@@ -43,13 +46,12 @@ const LoginForm = ({ authService, closeLoginModal }: Props) => {
 					};
 				});
 
-				alert(result.message);
+				setSuccessStatus({ successMessage: result.message });
 
 				closeLoginModal();
 			}
 		} catch (error: any) {
-			console.error(error);
-			alert(error.response?.data?.message || '잠시 후 다시 시도해주세요.');
+			setErrorStatus({ errorMessage: error.response?.data?.message || '잠시 후 다시 시도해주세요.' });
 		}
 	};
 
