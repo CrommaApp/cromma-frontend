@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 
 type Params = {
 	postId: string;
@@ -27,12 +27,12 @@ const useGetPost = () => {
 	const [postId, setPostId] = useState(params?.postId || '');
 
 	useEffect(() => {
-		if (params) {
+		if (params.postId) {
 			setPostId(params.postId);
 		}
 	}, [params]);
 
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const getPost = async () => {
 		try {
@@ -48,7 +48,7 @@ const useGetPost = () => {
 		} catch (error: any) {
 			if (error.response.data.statusCode === 404) {
 				alert(error.response.data.message);
-				history.replace('/');
+				navigate('/', { replace: true });
 			}
 		}
 	};

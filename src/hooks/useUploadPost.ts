@@ -1,6 +1,6 @@
 import React from 'react';
 import PostService from '@services/post/post-service';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 const postService = new PostService();
 
@@ -10,7 +10,7 @@ type UploadPostInputs = {
 };
 
 const useUploadPost = ({ title, content }: UploadPostInputs) => {
-	const history = useHistory();
+	const navigate = useNavigate();
 
 	const uploadPost = async () => {
 		try {
@@ -23,7 +23,7 @@ const useUploadPost = ({ title, content }: UploadPostInputs) => {
 
 			if (statusCode === 201) {
 				alert(message);
-				history.push(`/post/${data.id}`);
+				navigate(`/post/${data.id}`);
 			}
 		} catch (error) {
 			console.error(error);

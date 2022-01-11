@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import './index.css';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Layout from '@components/layouts';
 import AuthService from '@services/auth/auth-service';
 import { useSetRecoilState } from 'recoil';
@@ -57,18 +57,12 @@ const App = ({ authService }: Props) => {
 			{isUserChecked && (
 				<Layout authService={authService}>
 					<Suspense fallback={null}>
-						<Switch>
-							<Route exact path="/">
-								<Home />
-							</Route>
-							<Route exact path="/post/upload">
-								<PostUpload />
-							</Route>
-							<Route exact path="/post/:postId">
-								<PostDetail />
-							</Route>
-							<Redirect path="*" to="/" />
-						</Switch>
+						<Routes>
+							<Route path="" element={<Home />}></Route>
+							<Route path="post/upload" element={<PostUpload />}></Route>
+							<Route path="post/:postId" element={<PostDetail />}></Route>
+							<Route path="*" element={<Home />} />
+						</Routes>
 					</Suspense>
 				</Layout>
 			)}
