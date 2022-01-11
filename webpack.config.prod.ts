@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const dotenv = require('dotenv');
 
-const config = {
+const getConfig = (isAnalyzeMode: boolean) => ({
 	name: 'cromma',
 	mode: 'production',
 	devtool: 'hidden-source-map',
@@ -79,10 +79,11 @@ const config = {
 		new webpack.DefinePlugin({
 			'process.env': JSON.stringify(dotenv.config().parsed),
 		}),
-		new BundleAnalyzerPlugin({
-			generateStatsFile: true,
-			statsFilename: 'bundle-stats.json',
-		}),
+		isAnalyzeMode &&
+			new BundleAnalyzerPlugin({
+				generateStatsFile: true,
+				statsFilename: 'bundle-stats.json',
+			}),
 		new MiniCssExtractPlugin({
 			filename: `[name].[chunkhash].css`,
 		}),
@@ -91,7 +92,7 @@ const config = {
 			test: /\.(js|css|html|ttf)$/,
 			threshold: 10240,
 		}),
-	],
+	].filter(Boolean),
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.[name].[chunkhash].js',
@@ -131,5 +132,9 @@ const config = {
 		maxEntrypointSize: 512000,
 		maxAssetSize: 512000,
 	},
+});
+module.exports = (env: any) => {
+	const config = getConfig(env.bundleAnalyze);
+
+	return config;
 };
-export default config;

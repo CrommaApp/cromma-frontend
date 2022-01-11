@@ -19,6 +19,7 @@
 	"scripts": {
 		"dev": "webpack serve --config webpack.config.dev.ts",
 		"build": "webpack  --config webpack.config.prod.ts",
+		"bundle": "webpack --env bundleAnalyze=true --config webpack.config.prod.ts",
 		"test": "jest --watch",
 		"test:report": "jest --ci --reporters=default --reporters=jest-junit",
 		"deploy": "aws s3 sync ./dist s3://cromma.site --profile=cromma-s3-user"
