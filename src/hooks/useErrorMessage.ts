@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { errorStatusState } from '@stores/status';
+import { ALERT_TIME_OUT } from '@constants/alert';
 
 const useErrorMessage = () => {
 	const [errorStatus, setErrorStatus] = useRecoilState(errorStatusState);
@@ -12,7 +13,7 @@ const useErrorMessage = () => {
 			setErrorStatus({
 				errorMessage: '',
 			});
-		}, 3000);
+		}, ALERT_TIME_OUT);
 
 		return () => {
 			clearTimeout(errorTimer);

@@ -3,6 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
 import { errorStatusState } from '@stores/status';
+import { RESPONSE_STATUS_200 } from '@constants/api';
 
 type ReturnTypes = [Post[], boolean, boolean, () => Promise<void>];
 
@@ -24,7 +25,7 @@ const useGetAllPosts = (): ReturnTypes => {
 		try {
 			const { data, statusCode } = await postService.getAllPosts(lastId);
 
-			if (statusCode === 200 && data) {
+			if (statusCode === RESPONSE_STATUS_200 && data) {
 				const newPosts = data.map((post) => {
 					return {
 						...post,

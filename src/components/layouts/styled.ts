@@ -76,7 +76,8 @@ export const LayoutNavigation = styled.nav`
 export const LayoutAlertModal = styled.div`
 	position: fixed;
 	left: 50%;
-	z-index: 10;
+	transform: translateX(-50%);
+	z-index: 20;
 	padding: 1% 1.8%;
 	border: 0.5px solid #888888;
 	color: #888888;
