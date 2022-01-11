@@ -4,12 +4,12 @@ import { useHistory } from 'react-router';
 
 const postService = new PostService();
 
-type Props = {
+type UploadPostInputs = {
 	title: string;
 	content: string;
 };
 
-const useUploadPost = ({ title, content }: Props) => {
+const useUploadPost = ({ title, content }: UploadPostInputs) => {
 	const history = useHistory();
 
 	const uploadPost = async () => {
