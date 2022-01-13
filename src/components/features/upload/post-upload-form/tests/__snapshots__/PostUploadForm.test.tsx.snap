@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostUploadForm Component Snapshot 1`] = `
+<form
+  className="sc-bdvvtL mGalm"
+  onSubmit={[Function]}
+>
+  <ul>
+    <li
+      className="sc-gsDKAQ gWLlPW"
+    >
+      <label
+        htmlFor="post_title_input"
+      >
+        제목
+      </label>
+      <input
+        aria-required="true"
+        id="post_title_input"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </li>
+    <li
+      className="sc-gsDKAQ gWLlPW"
+    >
+      <label
+        htmlFor="post_content_input"
+      >
+        내용
+      </label>
+      <textarea
+        aria-required="true"
+        id="post_content_input"
+        onChange={[Function]}
+      />
+    </li>
+  </ul>
+  <button
+    className="sc-dkPtRN hnCZxc"
+    type="submit"
+  >
+    작성
+  </button>
+</form>
+`;

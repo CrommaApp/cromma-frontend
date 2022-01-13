@@ -9,7 +9,7 @@ const PostUploadForm = () => {
 
 	const uploadPost = useUploadPost({ title, content });
 
-	const onSumbitUploadForm = (e: React.FormEvent<HTMLFormElement>) => {
+	const sumbitUploadForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		if (!title || !content) return;
@@ -18,7 +18,7 @@ const PostUploadForm = () => {
 	};
 
 	return (
-		<UploadForm onSubmit={onSumbitUploadForm}>
+		<UploadForm onSubmit={sumbitUploadForm}>
 			<ul>
 				<UploadFormInput>
 					<label htmlFor="post_title_input">제목</label>

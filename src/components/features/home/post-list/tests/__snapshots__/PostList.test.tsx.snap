@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostList Component Snapshot 1`] = `
+<ul
+  aria-labelledby="search_result"
+  className="sc-dkPtRN fxWBMO"
+>
+  <li
+    aria-labelledby="post_title_0"
+    className="sc-bdvvtL fdrMrs"
+  >
+    <a
+      className="sc-gsDKAQ dgikNC"
+      href="/post/1"
+      id="post_title_0"
+      onClick={[Function]}
+    >
+      test1
+      <span>
+        test@gmail.com
+        <br />
+        <br />
+        2021-12-12
+      </span>
+    </a>
+  </li>
+  <li
+    aria-labelledby="post_title_1"
+    className="sc-bdvvtL fdrMrs"
+  >
+    <a
+      className="sc-gsDKAQ dgikNC"
+      href="/post/2"
+      id="post_title_1"
+      onClick={[Function]}
+    >
+      test2
+      <span>
+        test@gmail.com
+        <br />
+        <br />
+        2021-12-10
+      </span>
+    </a>
+  </li>
+</ul>
+`;

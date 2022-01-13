@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm Snapshot 1`] = `
+exports[`LoginForm Component Snapshot 1`] = `
 <form
   className="sc-bdvvtL zRvut"
   onSubmit={[Function]}

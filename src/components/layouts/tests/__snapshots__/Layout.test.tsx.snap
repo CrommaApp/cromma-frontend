@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Component Snapshot 1`] = `
+<div
+  aria-hidden={false}
+  className="sc-eCImPb jVnAoT"
+>
+  <div
+    className="sc-jRQBWg jUpBZr"
+    role="alert"
+  >
+    <p>
+      다시 시도해주세요.
+    </p>
+  </div>
+  <div
+    className="sc-jRQBWg jUpBZr"
+    role="status"
+  >
+    <p>
+      로그인 성공
+    </p>
+  </div>
+  <div
+    className="sc-gKclnd crsHSz"
+  >
+    <div>
+      <p
+        className="sc-iCfMLu dUIAQX"
+      >
+        로그인 해주세요
+      </p>
+      <nav
+        className="sc-furwcr jhiwlJ"
+      >
+        <ul>
+          <li>
+            <a
+              href="/"
+              onClick={[Function]}
+            >
+              홈
+            </a>
+          </li>
+          <li>
+            <a
+              href="/post/upload"
+              onClick={[Function]}
+            >
+              게시글 작성
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      회원가입/로그인
+    </button>
+  </div>
+  <main />
+</div>
+`;
