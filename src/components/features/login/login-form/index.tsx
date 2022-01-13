@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LoginFormContainer, LoginFormInput } from './styled';
 import useLoginForm from '@hooks/useLoginForm';
+import useInput from '@hooks/useInput';
 
 type Props = {
 	closeLoginModal: () => void;
 };
 
 const LoginForm = ({ closeLoginModal }: Props) => {
-	const [id, setId] = useState('');
-	const handleChangeId = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setId(e.target.value);
-	};
+	const [id, handleChangeId] = useInput('');
 
-	const [password, setPassword] = useState('');
-	const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.target.value);
-	};
+	const [password, handleChangePassword] = useInput('');
 
 	const [isIdValid, isPasswordValid, isFormSubmitted, submitLoginForm] = useLoginForm({
 		id,

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostState Component Snapshot 1`] = `
+<div
+  className="sc-bdvvtL jCpUOw"
+>
+  <h1>
+    로딩 중 입니다.
+  </h1>
+</div>
+`;
