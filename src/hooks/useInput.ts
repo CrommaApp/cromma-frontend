@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
 
 type Handler = (e: any) => void;
-type ReturnTypes<T = any> = [T, Handler];
+type ReturnType<T = any> = [T, Handler];
 
-const useInput = <T = any>(initialValue: T): ReturnTypes<T> => {
+const useInput = <T = any>(initialValue: T): ReturnType<T> => {
 	const [value, setValue] = useState(initialValue);
 	const handler = useCallback((e) => {
 		setValue(e.target.value);

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostDetailContent Component Snapshot 1`] = `
+<article
+  className="sc-bdvvtL ornPV"
+>
+  <h2>
+    test
+  </h2>
+  <time
+    dateTime="2021-12-12"
+  >
+    2021-12-12
+  </time>
+  <p>
+    작성자 : 
+    test@gmail.com
+  </p>
+  <p>
+    lorem
+  </p>
+  <button
+    onClick={[MockFunction]}
+    type="button"
+  >
+    삭제하기
+  </button>
+</article>
+`;

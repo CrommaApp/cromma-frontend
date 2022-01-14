@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LayoutLeftMenu Component Snapshot 1`] = `
+<div
+  className="sc-bdvvtL hocJeo"
+>
+  <div>
+    <p
+      className="sc-gsDKAQ bQCuDM"
+    >
+      로그인 해주세요
+    </p>
+    <nav
+      className="sc-dkPtRN bkioiV"
+    >
+      <ul>
+        <li>
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            홈
+          </a>
+        </li>
+        <li>
+          <a
+            href="/post/upload"
+            onClick={[Function]}
+          >
+            게시글 작성
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <button
+    onClick={[MockFunction]}
+    type="button"
+  >
+    회원가입/로그인
+  </button>
+</div>
+`;

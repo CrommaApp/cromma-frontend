@@ -19,9 +19,9 @@ type LoginFormInputs = {
 	closeLoginModal: () => void;
 };
 
-type ReturnTypes = [boolean, boolean, boolean, (e: React.FormEvent<HTMLFormElement>) => Promise<void>];
+type ReturnType = [boolean, boolean, boolean, (e: React.FormEvent<HTMLFormElement>) => Promise<void>];
 
-const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): ReturnTypes => {
+const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): ReturnType => {
 	const [isIdValid, setIsIdValid] = useState(false);
 	const [isPasswordValid, setIsPasswordValid] = useState(false);
 
@@ -33,12 +33,12 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 
 	const login = async () => {
 		try {
-			const result = await authService.login({
+			const { statusCode, message } = await authService.login({
 				userId: id,
 				password,
 			});
 
-			if (result.statusCode === RESPONSE_STATUS_200) {
+			if (statusCode === RESPONSE_STATUS_200) {
 				setUser((prev) => {
 					return {
 						...prev,
@@ -47,7 +47,7 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 					};
 				});
 
-				setSuccessStatus({ successMessage: result.message });
+				setSuccessStatus({ successMessage: message });
 
 				closeLoginModal();
 			}
@@ -65,8 +65,6 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 	};
 
 	const checkInputValidaton = () => {
-		if (!id.trim() || !password.trim()) return false;
-
 		const regExp = /^[A-Za-z0-9+]{4,10}$/;
 
 		if (regExp.test(id)) {
@@ -85,18 +83,18 @@ const useLoginForm = ({ id, password, closeLoginModal }: LoginFormInputs): Retur
 	const submitLoginForm = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const result = checkInputValidaton();
+		const validationCheckResult = checkInputValidaton();
 
 		setIsFormSubmitted(true);
 
-		if (result) {
+		if (validationCheckResult) {
 			try {
-				const result = await authService.signup({
+				const { statusCode } = await authService.signup({
 					userId: id,
 					password,
 				});
 
-				if (result.statusCode === RESPONSE_STATUS_201) {
+				if (statusCode === RESPONSE_STATUS_201) {
 					await login();
 				}
 			} catch (error: any) {

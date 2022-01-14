@@ -7,9 +7,9 @@ import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200 } from '@constants/api';
 
 const authService = new AuthService();
 
-type ReturnTypes = [UserState, () => Promise<void>];
+type ReturnType = [UserState, () => Promise<void>];
 
-const useLogout = (): ReturnTypes => {
+const useLogout = (): ReturnType => {
 	const [user, setUser] = useRecoilState(userState);
 
 	const setErrorStatus = useSetRecoilState(errorStatusState);
