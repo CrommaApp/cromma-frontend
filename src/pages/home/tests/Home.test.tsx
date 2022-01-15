@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Home from '@pages/home';
+import Home from '@pages/Home';
 import * as useGetAllPosts from '@hooks/useGetAllPosts';
 import { Post } from '@services/post/types';
 

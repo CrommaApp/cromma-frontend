@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
-import LayoutLeftMenu from '@components/layouts/left-menu';
+import LayoutLeftMenu from '@components/layout/LeftMenu';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import * as useLogout from '@hooks/useLogout';

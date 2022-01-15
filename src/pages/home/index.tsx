@@ -1,9 +1,9 @@
 import React from 'react';
-import PostList from '@components/features/home/post-list';
+import PostList from '@components/features/Home/PostList';
 import { MorePostsButton } from './styled';
-import { ContentWrapper } from '@components/shared/content-wrapper/styled';
+import { ContentWrapper } from '@components/shared/ContentWrapper/styled';
 import useGetAllPosts from '@hooks/useGetAllPosts';
-import PostsState from '@components/features/home/posts-state';
+import PostsState from '@components/features/Home/PostsState';
 
 const Home = () => {
 	const [allPosts, isReachingEnd, isLoading, onClickMorePostsButton] = useGetAllPosts();

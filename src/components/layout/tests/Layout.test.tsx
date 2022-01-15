@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-import Layout from '@components/layouts';
+import Layout from '@components/layout';
 
 jest.mock('@hooks/useErrorMessage', () => ({
 	__esModule: true,

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PostItem from '@components/features/home/post-item';
+import PostItem from '@components/features/Home/PostItem';
 import { Post } from '@services/post/types';
 
 const PostListWrapper = styled.ul`

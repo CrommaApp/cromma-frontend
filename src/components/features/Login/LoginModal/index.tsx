@@ -1,6 +1,6 @@
 import React from 'react';
-import Modal from '@components/shared/modal';
-import LoginForm from '../login-form';
+import Modal from '@components/shared/Modal';
+import LoginForm from '../LoginForm';
 
 type Props = {
 	closeLoginModal: () => void;

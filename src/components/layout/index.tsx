@@ -1,9 +1,9 @@
 import React, { ReactNode, useCallback, useState } from 'react';
-import LoginModal from '@components/features/login/login-modal';
+import LoginModal from '@components/features/Login/LoginModal';
 import { LayoutAlertModal, LayoutWrapper } from './styled';
 import useErrorMessage from '@hooks/useErrorMessage';
 import useSuccessMessage from '@hooks/useSuccessMessage';
-import LayoutLeftMenu from '@components/layouts/left-menu';
+import LayoutLeftMenu from '@components/layout/LeftMenu';
 
 type Props = {
 	children: ReactNode;

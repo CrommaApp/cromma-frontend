@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { Post } from '@services/post/types';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router-dom';
-import PostList from '@components/features/home/post-list';
-import PostDetail from '@pages/post/detail';
+import PostList from '@components/features/Home/PostList';
+import PostDetail from '@pages/Post/Detail';
 import { RecoilRoot } from 'recoil';
 
 describe('PostList Component', () => {

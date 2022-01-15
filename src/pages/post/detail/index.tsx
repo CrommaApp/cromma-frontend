@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import PostDetailContent from '@components/features/detail/detail-content';
-import { ContentWrapper } from '@components/shared/content-wrapper/styled';
+import PostDetailContent from '@components/features/Detail/DetailContent';
+import { ContentWrapper } from '@components/shared/ContentWrapper/styled';
 import useGetPost from '@hooks/useGetPost';
 import useDeletePost from '@hooks/useDeletePost';
 import { useRecoilValue } from 'recoil';
