@@ -1,0 +1,14 @@
+{
+	"statusCode": 201,
+	"data": {
+		"id": 1,
+		"title": "제목1",
+		"content": "lorem",
+		"createdAt": "2021-12-12",
+		"updatedAt": "2021-12-14",
+		"User": {
+			"userId": "test@gmail.com"
+		},
+		"UserId": 2
+	}
+}

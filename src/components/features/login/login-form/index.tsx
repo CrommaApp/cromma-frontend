@@ -49,7 +49,7 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 					<input
 						id="login_input_password"
 						type="password"
-						placeholder="passowrd"
+						placeholder="password"
 						value={password}
 						onChange={handleChangePassword}
 						aria-required="true"

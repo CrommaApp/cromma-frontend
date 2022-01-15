@@ -14,6 +14,7 @@
 - Library & Framwork : React, Styled-Components, Webpack, Recoil
 - Deploy : S3
 - CI/CD : Github actions
+- Test : Jest, Testing-library, Cypress
 
 <br />
 
