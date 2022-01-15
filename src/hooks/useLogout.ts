@@ -17,9 +17,9 @@ const useLogout = (): ReturnType => {
 
 	const onLogout = async () => {
 		try {
-			const result = await authService.logout();
+			const { statusCode, message } = await authService.logout();
 
-			if (result.statusCode === RESPONSE_STATUS_200) {
+			if (statusCode === RESPONSE_STATUS_200) {
 				setUser((prev) => {
 					return {
 						...prev,
@@ -28,7 +28,7 @@ const useLogout = (): ReturnType => {
 					};
 				});
 
-				setSuccessStatus({ successMessage: result.message });
+				setSuccessStatus({ successMessage: message });
 			}
 		} catch (error) {
 			setErrorStatus({
