@@ -21,5 +21,6 @@
 			"@services/*": ["src/services/*"],
 			"@constants/*": ["src/constants/*"]
 		}
-	}
+	},
+	"exclude": ["**/*.spec.ts"]
 }

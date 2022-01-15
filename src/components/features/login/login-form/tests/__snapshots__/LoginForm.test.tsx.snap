@@ -41,7 +41,7 @@ exports[`LoginForm Component Snapshot 1`] = `
         aria-required="true"
         id="login_input_password"
         onChange={[Function]}
-        placeholder="passowrd"
+        placeholder="password"
         type="password"
         value=""
       />

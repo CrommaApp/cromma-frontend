@@ -22,13 +22,13 @@ describe('LoginForm Component', () => {
 	};
 
 	const enterPassword = (password: string) => {
-		const passwordInput = screen.getByPlaceholderText('passowrd');
+		const passwordInput = screen.getByPlaceholderText('password');
 
 		userEvent.type(passwordInput, password);
 	};
 
 	const expectPassword = (expectedPassword: string) => {
-		const passwordInput = screen.getByPlaceholderText('passowrd');
+		const passwordInput = screen.getByPlaceholderText('password');
 
 		expect(passwordInput).toHaveValue(expectedPassword);
 	};
