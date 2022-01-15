@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
-import LoginForm from '@components/features/login/login-form';
+import LoginForm from '@components/features/Login/LoginForm';
 import * as useLoginForm from '@hooks/useLoginForm';
 
 type ReturnType = [boolean, boolean, boolean, (e: React.FormEvent<HTMLFormElement>) => Promise<void>];

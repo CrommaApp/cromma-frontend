@@ -1,12 +1,12 @@
 import React, { lazy, Suspense } from 'react';
 import './index.css';
 import { Route, Routes } from 'react-router-dom';
-import Layout from '@components/layouts';
+import Layout from '@components/layout';
 import useCheckUser from '@hooks/useCheckUser';
 
-const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@pages/home'));
-const PostUpload = lazy(() => import(/* webpackChunkName: "PostUpload" */ '@pages/post/upload'));
-const PostDetail = lazy(() => import(/* webpackChunkName: "PostDetail" */ '@pages/post/detail'));
+const Home = lazy(() => import(/* webpackChunkName: "Home" */ '@pages/Home'));
+const PostUpload = lazy(() => import(/* webpackChunkName: "PostUpload" */ '@pages/Post/Upload'));
+const PostDetail = lazy(() => import(/* webpackChunkName: "PostDetail" */ '@pages/Post/Detail'));
 
 const App = () => {
 	const isUserChecked = useCheckUser();

@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
-import PostDetailContent from '@components/features/detail/detail-content';
+import PostDetailContent from '@components/features/Detail/DetailContent';
 import { Post } from '@services/post/types';
 import { RecoilRoot } from 'recoil';
 

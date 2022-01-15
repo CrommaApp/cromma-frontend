@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
-import PostUploadForm from '@components/features/upload/post-upload-form';
+import PostUploadForm from '@components/features/Upload/PostUploadForm';
 import { BrowserRouter } from 'react-router-dom';
 
 const mockedSumbitUploadPost = jest.fn();

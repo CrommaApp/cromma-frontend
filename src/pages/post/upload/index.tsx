@@ -1,6 +1,6 @@
 import React from 'react';
-import PostUploadForm from '@components/features/upload/post-upload-form';
-import { ContentWrapper } from '@components/shared/content-wrapper/styled';
+import PostUploadForm from '@components/features/Upload/PostUploadForm';
+import { ContentWrapper } from '@components/shared/ContentWrapper/styled';
 
 const PostUpload = () => {
 	return (

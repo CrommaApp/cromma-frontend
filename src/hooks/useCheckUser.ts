@@ -17,14 +17,14 @@ const useCheckUser = (): boolean => {
 		setIsUserChecked(false);
 
 		try {
-			const result = await authService.getMyInfo();
+			const { data } = await authService.getMyInfo();
 
-			if (result.data !== null) {
+			if (data !== null) {
 				setUser((prev) => {
 					return {
 						...prev,
 						isLogin: true,
-						id: result.data!.userId,
+						id: data!.userId,
 					};
 				});
 			} else {
