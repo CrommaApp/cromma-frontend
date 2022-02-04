@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PostDetailContent from '@components/features/Detail/DetailContent';
 import { ContentWrapper } from '@components/shared/ContentWrapper/styled';
 import useGetPost from '@hooks/useGetPost';
