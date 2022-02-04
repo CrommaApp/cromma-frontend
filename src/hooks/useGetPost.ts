@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import PostService from '@services/post/post-service';
 import { Post } from '@services/post/types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { errorStatusState } from '@stores/status';
 import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_404 } from '@constants/api';
+import { useRecoilValue } from 'recoil';
+import { userState } from '@stores/user';
 
 type Params = {
 	postId: string;
@@ -12,7 +14,9 @@ type Params = {
 
 const postService = new PostService();
 
-const useGetPost = () => {
+type ReturnType = [Post, boolean];
+
+const useGetPost = (): ReturnType => {
 	const params = useParams<Params>();
 
 	const [post, setPost] = useState<Post>({
@@ -68,7 +72,11 @@ const useGetPost = () => {
 		getPost();
 	}, []);
 
-	return post;
+	const user = useRecoilValue(userState);
+
+	const isMyPost = useMemo(() => user.id === post.User.userId, [user, post]);
+
+	return [post, isMyPost];
 };
 
 export default useGetPost;
