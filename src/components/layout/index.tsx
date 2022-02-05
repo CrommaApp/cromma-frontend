@@ -42,7 +42,7 @@ const Layout = ({ children }: Props) => {
 
 				<main>{children}</main>
 			</LayoutWrapper>
-			{isModalVisible && <LoginModal closeLoginModal={closeLoginModal} />}
+			{true && <LoginModal closeLoginModal={closeLoginModal} />}
 		</>
 	);
 };

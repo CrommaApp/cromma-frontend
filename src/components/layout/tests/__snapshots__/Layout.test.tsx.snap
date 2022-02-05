@@ -1,65 +1,140 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Layout Component Snapshot 1`] = `
-<div
-  aria-hidden={false}
-  className="sc-eCImPb jVnAoT"
->
+Array [
   <div
-    className="sc-jRQBWg jUpBZr"
-    role="alert"
+    aria-hidden={false}
+    className="sc-eCImPb gWyucV"
   >
-    <p>
-      다시 시도해주세요.
-    </p>
-  </div>
-  <div
-    className="sc-jRQBWg jUpBZr"
-    role="status"
-  >
-    <p>
-      로그인 성공
-    </p>
-  </div>
-  <div
-    className="sc-gKclnd crsHSz"
-  >
-    <div>
-      <p
-        className="sc-iCfMLu dUIAQX"
-      >
-        로그인 해주세요
+    <div
+      className="sc-jRQBWg etgaok"
+      role="alert"
+    >
+      <p>
+        다시 시도해주세요.
       </p>
-      <nav
-        className="sc-furwcr jhiwlJ"
+    </div>
+    <div
+      className="sc-jRQBWg etgaok"
+      role="status"
+    >
+      <p>
+        로그인 성공
+      </p>
+    </div>
+    <div
+      className="sc-gKclnd crsHSz"
+    >
+      <div>
+        <p
+          className="sc-iCfMLu dUIAQX"
+        >
+          로그인 해주세요
+        </p>
+        <nav
+          className="sc-furwcr jhiwlJ"
+        >
+          <ul>
+            <li>
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                홈
+              </a>
+            </li>
+            <li>
+              <a
+                href="/post/upload"
+                onClick={[Function]}
+              >
+                게시글 작성
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        회원가입/로그인
+      </button>
+    </div>
+    <main />
+  </div>,
+  <div
+    className="sc-bdvvtL jneWYu"
+    onClick={[Function]}
+  >
+    <dialog
+      aria-labelledby="modal_label"
+      aria-modal="true"
+      className="sc-gsDKAQ hFGebe"
+      onClick={[Function]}
+    >
+      <h1>
+        Cromma
+      </h1>
+      <h2
+        className="a11y-hidden"
+        id="modal_label"
+      >
+        로그인
+      </h2>
+      <form
+        className="sc-dkPtRN inkDHR"
+        onSubmit={[Function]}
       >
         <ul>
-          <li>
-            <a
-              href="/"
-              onClick={[Function]}
+          <li
+            className="sc-hKwDye czeRgX"
+          >
+            <label
+              className="a11y-hidden"
+              htmlFor="login_input_id"
             >
-              홈
-            </a>
+              ID
+            </label>
+            <input
+              aria-errormessage="id_error_msg"
+              aria-invalid={false}
+              aria-required="true"
+              id="login_input_id"
+              onChange={[Function]}
+              placeholder="id"
+              type="text"
+              value=""
+            />
           </li>
-          <li>
-            <a
-              href="/post/upload"
-              onClick={[Function]}
+          <li
+            className="sc-hKwDye czeRgX"
+          >
+            <label
+              className="a11y-hidden"
+              htmlFor="login_input_password"
             >
-              게시글 작성
-            </a>
+              Password
+            </label>
+            <input
+              aria-errormessage="password_error_msg"
+              aria-invalid={false}
+              aria-required="true"
+              id="login_input_password"
+              onChange={[Function]}
+              placeholder="password"
+              type="password"
+              value=""
+            />
           </li>
         </ul>
-      </nav>
-    </div>
-    <button
-      onClick={[Function]}
-      type="button"
-    >
-      회원가입/로그인
-    </button>
-  </div>
-  <main />
-</div>
+        <button
+          type="submit"
+        >
+          로그인
+        </button>
+      </form>
+    </dialog>
+  </div>,
+]
 `;

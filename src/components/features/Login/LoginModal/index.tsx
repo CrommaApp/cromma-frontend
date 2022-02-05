@@ -9,7 +9,10 @@ type Props = {
 const LoginModal = ({ closeLoginModal }: Props) => {
 	return (
 		<Modal onCloseModal={closeLoginModal}>
-			<h1 id="modal_label">로그인</h1>
+			<h1>Cromma</h1>
+			<h2 id="modal_label" className="a11y-hidden">
+				로그인
+			</h2>
 			<LoginForm closeLoginModal={closeLoginModal} />
 		</Modal>
 	);

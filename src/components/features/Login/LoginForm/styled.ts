@@ -6,9 +6,10 @@ export const LoginFormContainer = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
-	padding: 10px;
+	justify-content: center;
+	padding: 10px 60px;
 	overflow-y: scroll;
+	margin-top: 4%;
 
 	& > ul {
 		width: 100%;
@@ -19,33 +20,25 @@ export const LoginFormContainer = styled.form`
 	}
 
 	& > button {
+		width: 100%;
 		border: 1px solid #dddddd;
-		outline: none;
-		background-color: transparent;
-		padding: 2% 4%;
+		background-color: white;
+		padding: 3% 4%;
 		border-radius: 4px;
 		color: #888888;
-
-		&:focus {
-			border: 1px solid #aaaaaa;
-		}
+		margin-top: 12%;
 	}
 `;
 
 export const LoginFormInput = styled.li`
-	width: 50%;
+	width: 100%;
 	margin: 10px 0;
 
 	& > input {
 		width: 100%;
 		border: 1px solid #dddddd;
 		border-radius: 4px;
-		padding: 8px;
-		outline: none;
-
-		&:focus {
-			border: 1px solid #aaaaaa;
-		}
+		padding: 10px;
 	}
 
 	& > p {

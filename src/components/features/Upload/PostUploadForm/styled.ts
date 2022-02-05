@@ -8,6 +8,7 @@ export const UploadForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 
 	& > ul {
 		width: 100%;
@@ -27,41 +28,31 @@ export const UploadFormInput = styled.li`
 
 	& > input {
 		border: 1px solid #dddddd;
-		outline: none;
 		padding: 2% 4%;
 		border-radius: 4px;
 		color: #888888;
-
-		&:focus {
-			border: 2px solid #aaaaaa;
-		}
 	}
 
 	& > textarea {
 		height: 200px;
 		border: 1px solid #dddddd;
-		outline: none;
 		padding: 3%;
 		border-radius: 4px;
 		color: #888888;
 		resize: none;
-
-		&:focus {
-			border: 2px solid #aaaaaa;
-		}
 	}
 `;
 
 export const UploadSubmitButton = styled.button`
-	width: 40%;
-	background-color: transparent;
+	width: 25%;
+	background-color: white;
 	border: 1px solid #dddddd;
-	outline: none;
 	border-radius: 4px;
 	color: #888888;
 	padding: 2%;
 
-	&:focus {
-		border: 2px solid #aaaaaa;
+	@media screen and (max-width: 768px) {
+		width: 50%;
+		padding: 3.5%;
 	}
 `;

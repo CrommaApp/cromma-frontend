@@ -20,12 +20,12 @@ export const ModalCard = styled.dialog`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	width: 450px;
-	height: 350px;
+	width: 380px;
+	height: 360px;
 	background: white;
 	border: none;
 	border-radius: 12px;
-	padding: 60px 0;
+	padding: 40px 0;
 	cursor: auto;
 
 	& > h1 {
@@ -35,14 +35,14 @@ export const ModalCard = styled.dialog`
 	}
 
 	@media screen and (max-width: 768px) {
-		width: 400px;
+		width: 320px;
 		height: 300px;
-		padding: 40px 0;
+		padding: 30px 0;
 	}
 
 	@media screen and (max-width: 480px) {
-		width: 320px;
-		height: 220px;
-		padding: 15px 5px 5px 5px;
+		width: 300px;
+		height: 280px;
+		padding: 30px 5px 20px 5px;
 	}
 `;
