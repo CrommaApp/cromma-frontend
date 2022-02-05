@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	z-index: 10;
+	z-index: 15;
 	background-color: rgba(0, 0, 0, 0.6);
 	cursor: pointer;
 	overflow: hidden;
@@ -19,9 +19,8 @@ export const ModalCard = styled.dialog`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
-	width: 380px;
-	height: 360px;
+	width: 360px;
+	height: 380px;
 	background: white;
 	border: none;
 	border-radius: 12px;
@@ -36,13 +35,11 @@ export const ModalCard = styled.dialog`
 
 	@media screen and (max-width: 768px) {
 		width: 320px;
-		height: 300px;
 		padding: 30px 0;
 	}
 
 	@media screen and (max-width: 480px) {
 		width: 300px;
-		height: 280px;
 		padding: 30px 5px 20px 5px;
 	}
 `;

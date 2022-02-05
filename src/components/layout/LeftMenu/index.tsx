@@ -4,14 +4,15 @@ import useLogout from '@hooks/useLogout';
 import { LayoutMenu, LayoutNavigation, LayoutUserState } from './styled';
 
 type Props = {
+	isMenuVisible: boolean;
 	showLoginModal: () => void;
 };
 
-const LayoutLeftMenu = ({ showLoginModal }: Props) => {
+const LayoutLeftMenu = ({ isMenuVisible, showLoginModal }: Props) => {
 	const [user, onLogout] = useLogout();
 
 	return (
-		<LayoutMenu>
+		<LayoutMenu isMenuVisible={isMenuVisible}>
 			<div>
 				<LayoutUserState>{user.isLogin ? user.id : '로그인 해주세요'}</LayoutUserState>
 				<LayoutNavigation>

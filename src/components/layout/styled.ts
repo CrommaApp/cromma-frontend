@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type StyledProps = {
+	isMenuVisible: boolean;
+};
+
 export const LayoutWrapper = styled.div`
 	width: 100%;
 	height: 100vh;
@@ -31,8 +35,28 @@ export const LayoutAlertModal = styled.div`
 	border-radius: 50px;
 	background-color: white;
 	font-size: 0.8rem;
+
 	@media screen and (max-width: 1200px) {
 		padding: 8px 24px;
 		font-size: 0.7rem;
+	}
+`;
+
+export const LayoutToggleMenuButton = styled.button`
+	display: none;
+	color: #888888;
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	right: 2%;
+	top: 2%;
+	z-index: 12;
+	font-size: 0.5rem;
+	border-radius: 50%;
+	background-color: white;
+	box-shadow: 0 5px 18px -7px rgba(0, 0, 0, 0.3);
+
+	@media screen and (max-width: 768px) {
+		display: block;
 	}
 `;

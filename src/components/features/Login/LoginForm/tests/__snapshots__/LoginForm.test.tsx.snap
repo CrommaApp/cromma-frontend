@@ -2,7 +2,7 @@
 
 exports[`LoginForm Component Snapshot 1`] = `
 <form
-  className="sc-bdvvtL cMkyDI"
+  className="sc-bdvvtL jYLRrR"
   onSubmit={[Function]}
 >
   <ul>
