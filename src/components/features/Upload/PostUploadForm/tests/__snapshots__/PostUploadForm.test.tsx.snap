@@ -2,12 +2,12 @@
 
 exports[`PostUploadForm Component Snapshot 1`] = `
 <form
-  className="sc-bdvvtL mGalm"
+  className="sc-bdvvtL fEJqzx"
   onSubmit={[Function]}
 >
   <ul>
     <li
-      className="sc-gsDKAQ gWLlPW"
+      className="sc-gsDKAQ jqORlO"
     >
       <label
         htmlFor="post_title_input"
@@ -23,7 +23,7 @@ exports[`PostUploadForm Component Snapshot 1`] = `
       />
     </li>
     <li
-      className="sc-gsDKAQ gWLlPW"
+      className="sc-gsDKAQ jqORlO"
     >
       <label
         htmlFor="post_content_input"
@@ -38,7 +38,7 @@ exports[`PostUploadForm Component Snapshot 1`] = `
     </li>
   </ul>
   <button
-    className="sc-dkPtRN hnCZxc"
+    className="sc-dkPtRN eFUOHx"
     type="submit"
   >
     작성
