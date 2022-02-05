@@ -3,7 +3,7 @@
 exports[`PostList Component Snapshot 1`] = `
 <ul
   aria-labelledby="search_result"
-  className="sc-dkPtRN hjpXwC"
+  className="sc-dkPtRN hIXKFQ"
 >
   <li
     aria-labelledby="post_title_0"

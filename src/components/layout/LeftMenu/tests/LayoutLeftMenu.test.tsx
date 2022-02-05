@@ -11,7 +11,7 @@ import { UserState } from '@stores/user';
 type ReturnType = [UserState, () => Promise<void>];
 
 describe('LayoutLeftMenu Component', () => {
-	const showLoginModal = jest.fn();
+	const mockedShowLoginModal = jest.fn();
 
 	const mockedOnLogout = jest.fn();
 
@@ -22,7 +22,7 @@ describe('LayoutLeftMenu Component', () => {
 		render(
 			<RecoilRoot>
 				<BrowserRouter>
-					<LayoutLeftMenu showLoginModal={showLoginModal} />
+					<LayoutLeftMenu isMenuVisible={true} showLoginModal={mockedShowLoginModal} />
 				</BrowserRouter>
 			</RecoilRoot>,
 		);
@@ -32,7 +32,7 @@ describe('LayoutLeftMenu Component', () => {
 		const component = renderer.create(
 			<RecoilRoot>
 				<BrowserRouter>
-					<LayoutLeftMenu showLoginModal={showLoginModal} />
+					<LayoutLeftMenu isMenuVisible={true} showLoginModal={mockedShowLoginModal} />
 				</BrowserRouter>
 			</RecoilRoot>,
 		);
@@ -59,6 +59,6 @@ describe('LayoutLeftMenu Component', () => {
 
 		userEvent.click(loginButton);
 
-		expect(showLoginModal).toHaveBeenCalled();
+		expect(mockedShowLoginModal).toHaveBeenCalled();
 	});
 });
