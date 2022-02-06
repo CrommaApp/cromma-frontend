@@ -2,7 +2,7 @@
 
 exports[`LoginForm Component Snapshot 1`] = `
 <form
-  className="sc-bdvvtL jYLRrR"
+  className="sc-bdvvtL kBQgBD"
   onSubmit={[Function]}
 >
   <ul>
@@ -21,6 +21,7 @@ exports[`LoginForm Component Snapshot 1`] = `
         aria-required="true"
         id="login_input_id"
         onChange={[Function]}
+        onKeyDown={[Function]}
         placeholder="id"
         type="text"
         value=""

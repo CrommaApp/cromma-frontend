@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { LoginFormContainer, LoginFormInput } from './styled';
 import useLoginForm from '@hooks/useLoginForm';
 import useInput from '@hooks/useInput';
@@ -18,6 +18,18 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 		closeLoginModal,
 	});
 
+	const loginInputRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		loginInputRef.current?.focus();
+	}, []);
+
+	const preventTabShiftMove = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.shiftKey && e.key === 'Tab') {
+			e.preventDefault();
+		}
+	};
+
 	return (
 		<LoginFormContainer onSubmit={submitLoginForm}>
 			<ul>
@@ -29,11 +41,13 @@ const LoginForm = ({ closeLoginModal }: Props) => {
 						id="login_input_id"
 						type="text"
 						placeholder="id"
+						ref={loginInputRef}
 						value={id}
 						onChange={handleChangeId}
 						aria-required="true"
 						aria-invalid={!isIdValid && isFormSubmitted}
 						aria-errormessage="id_error_msg"
+						onKeyDown={preventTabShiftMove}
 					/>
 					{!isIdValid && isFormSubmitted && (
 						<p id="id_error_msg" role="alert" aria-live="assertive">

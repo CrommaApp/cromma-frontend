@@ -10,7 +10,7 @@ const PostListWrapper = styled.ul`
 	flex-wrap: wrap;
 	gap: 3%;
 	padding: 0 12%;
-	margin: 8% 0;
+	margin: 7% 0;
 
 	@media screen and (max-width: 480px) {
 		padding: 0 8%;

@@ -22,7 +22,7 @@ export const LoginFormContainer = styled.form`
 		width: 100%;
 		border: 1px solid #dddddd;
 		background-color: white;
-		padding: 3% 4%;
+		padding: 4%;
 		border-radius: 4px;
 		color: #888888;
 		margin-top: 12%;
