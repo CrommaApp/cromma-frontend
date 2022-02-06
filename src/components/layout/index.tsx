@@ -1,6 +1,6 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 import LoginModal from '@components/features/Login/LoginModal';
-import { LayoutAlertModal, LayoutWrapper } from './styled';
+import { LayoutAlertModal, LayoutToggleMenuButton, LayoutWrapper } from './styled';
 import useErrorMessage from '@hooks/useErrorMessage';
 import useSuccessMessage from '@hooks/useSuccessMessage';
 import LayoutLeftMenu from '@components/layout/LeftMenu';
@@ -18,6 +18,12 @@ const Layout = ({ children }: Props) => {
 
 	const closeLoginModal = useCallback(() => {
 		setIsModalVisible(false);
+	}, []);
+
+	const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+	const toggleLeftMenu = useCallback(() => {
+		setIsMenuVisible((prev) => !prev);
 	}, []);
 
 	const errorMessage = useErrorMessage();
@@ -38,7 +44,11 @@ const Layout = ({ children }: Props) => {
 					</LayoutAlertModal>
 				)}
 
-				<LayoutLeftMenu showLoginModal={showLoginModal} />
+				<LayoutToggleMenuButton onClick={toggleLeftMenu}>
+					{isMenuVisible ? '메뉴 닫기' : '메뉴 열기'}
+				</LayoutToggleMenuButton>
+
+				<LayoutLeftMenu isMenuVisible={isMenuVisible} showLoginModal={showLoginModal} />
 
 				<main>{children}</main>
 			</LayoutWrapper>

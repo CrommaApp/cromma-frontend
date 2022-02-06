@@ -5,6 +5,16 @@ import { Post } from '@services/post/types';
 
 const PostListWrapper = styled.ul`
 	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 3%;
+	padding: 0 12%;
+	margin: 7% 0;
+
+	@media screen and (max-width: 480px) {
+		padding: 0 8%;
+	}
 `;
 
 type Props = {

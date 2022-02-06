@@ -3,10 +3,10 @@
 exports[`Layout Component Snapshot 1`] = `
 <div
   aria-hidden={false}
-  className="sc-eCImPb jVnAoT"
+  className="sc-jRQBWg dXLWwK"
 >
   <div
-    className="sc-jRQBWg jUpBZr"
+    className="sc-gKclnd eBMujM"
     role="alert"
   >
     <p>
@@ -14,24 +14,30 @@ exports[`Layout Component Snapshot 1`] = `
     </p>
   </div>
   <div
-    className="sc-jRQBWg jUpBZr"
+    className="sc-gKclnd eBMujM"
     role="status"
   >
     <p>
       로그인 성공
     </p>
   </div>
+  <button
+    className="sc-iCfMLu dKgryP"
+    onClick={[Function]}
+  >
+    메뉴 열기
+  </button>
   <div
-    className="sc-gKclnd crsHSz"
+    className="sc-furwcr izIRk"
   >
     <div>
       <p
-        className="sc-iCfMLu dUIAQX"
+        className="sc-pVTFL fanlvf"
       >
         로그인 해주세요
       </p>
       <nav
-        className="sc-furwcr jhiwlJ"
+        className="sc-jrQzAO gWolvX"
       >
         <ul>
           <li>

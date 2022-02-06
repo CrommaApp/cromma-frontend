@@ -3,14 +3,14 @@
 exports[`PostList Component Snapshot 1`] = `
 <ul
   aria-labelledby="search_result"
-  className="sc-dkPtRN fxWBMO"
+  className="sc-dkPtRN hffuYX"
 >
   <li
     aria-labelledby="post_title_0"
-    className="sc-bdvvtL fdrMrs"
+    className="sc-bdvvtL eNXTkd"
   >
     <a
-      className="sc-gsDKAQ dgikNC"
+      className="sc-gsDKAQ foxPAZ"
       href="/post/1"
       id="post_title_0"
       onClick={[Function]}
@@ -26,10 +26,10 @@ exports[`PostList Component Snapshot 1`] = `
   </li>
   <li
     aria-labelledby="post_title_1"
-    className="sc-bdvvtL fdrMrs"
+    className="sc-bdvvtL eNXTkd"
   >
     <a
-      className="sc-gsDKAQ dgikNC"
+      className="sc-gsDKAQ foxPAZ"
       href="/post/2"
       id="post_title_1"
       onClick={[Function]}

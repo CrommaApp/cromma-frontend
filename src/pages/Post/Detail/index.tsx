@@ -1,19 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PostDetailContent from '@components/features/Detail/DetailContent';
 import { ContentWrapper } from '@components/shared/ContentWrapper/styled';
 import useGetPost from '@hooks/useGetPost';
 import useDeletePost from '@hooks/useDeletePost';
-import { useRecoilValue } from 'recoil';
-import { userState } from '@stores/user';
 
 const PostDetail = () => {
-	const post = useGetPost();
+	const [post, isMyPost] = useGetPost();
 
 	const deletePost = useDeletePost(post.id);
-
-	const user = useRecoilValue(userState);
-
-	const isMyPost = useMemo(() => user.id === post.User.userId, [user, post]);
 
 	return (
 		<>

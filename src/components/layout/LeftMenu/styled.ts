@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type StyledProps = {
+	isMenuVisible: boolean;
+};
+
 export const LayoutMenu = styled.div`
 	width: 25%;
 	height: 100%;
@@ -26,7 +30,21 @@ export const LayoutMenu = styled.div`
 	}
 
 	@media screen and (max-width: 768px) {
-		display: none;
+		width: 260px;
+		display: ${({ isMenuVisible }: StyledProps) => (isMenuVisible ? 'block' : 'none')};
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+		overflow-y: scroll;
+		white-space: nowrap;
+		padding: 8% 0;
+
+		& > button {
+			display: block;
+			margin: auto;
+			margin-top: 30%;
+		}
 	}
 `;
 

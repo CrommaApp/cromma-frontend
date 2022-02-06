@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const PostDetailContentWrapper = styled.article`
 	width: 100%;
 	height: 100%;
-	padding: 8% 20%;
+	padding: 5% 12%;
 	position: relative;
+	background-color: white;
 
 	& > h2 {
 		font-size: 1.8rem;
@@ -30,7 +31,7 @@ export const PostDetailContentWrapper = styled.article`
 		background-color: transparent;
 		font-size: 0.8rem;
 		color: #aaaaaa;
-		top: 0;
-		right: 0;
+		top: 1%;
+		right: 1%;
 	}
 `;
