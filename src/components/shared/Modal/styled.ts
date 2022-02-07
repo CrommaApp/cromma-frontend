@@ -30,7 +30,7 @@ export const ModalCard = styled.dialog`
 	& > h1 {
 		font-size: 1.8rem;
 		margin: 0;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 	}
 
 	@media screen and (max-width: 768px) {

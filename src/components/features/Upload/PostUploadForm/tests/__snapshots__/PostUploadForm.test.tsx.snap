@@ -7,7 +7,7 @@ exports[`PostUploadForm Component Snapshot 1`] = `
 >
   <ul>
     <li
-      className="sc-gsDKAQ jqORlO"
+      className="sc-gsDKAQ gxMtPD"
     >
       <label
         htmlFor="post_title_input"
@@ -23,7 +23,7 @@ exports[`PostUploadForm Component Snapshot 1`] = `
       />
     </li>
     <li
-      className="sc-gsDKAQ jqORlO"
+      className="sc-gsDKAQ gxMtPD"
     >
       <label
         htmlFor="post_content_input"
@@ -38,7 +38,7 @@ exports[`PostUploadForm Component Snapshot 1`] = `
     </li>
   </ul>
   <button
-    className="sc-dkPtRN eFUOHx"
+    className="sc-dkPtRN kumpLk"
     type="submit"
   >
     작성

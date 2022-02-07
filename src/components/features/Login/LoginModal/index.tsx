@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const CloseLoginModalButton = styled.button`
 	background-color: transparent;
 	font-size: 0.8rem;
-	color: #aaaaaa;
+	color: var(--font-color-gray);
 	position: absolute;
 	top: 2%;
 	right: 2%;

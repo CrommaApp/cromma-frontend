@@ -16,7 +16,7 @@ const PostItemWrapper = styled.li`
 	& > a {
 		font-size: 1.4rem;
 		margin: 0 0 1% 0;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 		padding: 20% 1%;
 	}
 

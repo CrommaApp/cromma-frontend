@@ -18,7 +18,7 @@ export const PostDetailContentWrapper = styled.article`
 
 	& > time {
 		font-size: 0.8rem;
-		color: #aaaaaa;
+		color: var(--font-color-gray);
 	}
 
 	& > p {
@@ -30,7 +30,7 @@ export const PostDetailContentWrapper = styled.article`
 		position: absolute;
 		background-color: transparent;
 		font-size: 0.8rem;
-		color: #aaaaaa;
+		color: var(--font-color-gray);
 		top: 1%;
 		right: 1%;
 	}

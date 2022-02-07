@@ -16,7 +16,7 @@ export const LayoutWrapper = styled.div`
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 
 		@media screen and (max-width: 768px) {
 			width: 100%;
@@ -31,7 +31,7 @@ export const LayoutAlertModal = styled.div`
 	z-index: 20;
 	padding: 0.5% 1.8%;
 	border: 1px solid #888888;
-	color: #888888;
+	color: var(--font-color-dark-gray);
 	border-radius: 50px;
 	background-color: white;
 	font-size: 0.8rem;
@@ -44,7 +44,7 @@ export const LayoutAlertModal = styled.div`
 
 export const LayoutToggleMenuButton = styled.button`
 	display: none;
-	color: #888888;
+	color: var(--font-color-dark-gray);
 	position: absolute;
 	width: 40px;
 	height: 40px;

@@ -24,7 +24,7 @@ export const LoginFormContainer = styled.form`
 		background-color: white;
 		padding: 4%;
 		border-radius: 4px;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 		margin-top: 12%;
 	}
 `;
@@ -42,7 +42,7 @@ export const LoginFormInput = styled.li`
 
 	& > p {
 		font-size: 0.7rem;
-		color: #aaaaaa;
+		color: var(--font-color-gray);
 		margin: 0;
 		padding: 4px;
 	}

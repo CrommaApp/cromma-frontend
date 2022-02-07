@@ -23,14 +23,14 @@ export const UploadFormInput = styled.li`
 	margin-bottom: 10%;
 
 	& > label {
-		color: #888888;
+		color: var(--font-color-dark-gray);
 	}
 
 	& > input {
 		border: 1px solid #dddddd;
 		padding: 2% 4%;
 		border-radius: 4px;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 	}
 
 	& > textarea {
@@ -38,7 +38,7 @@ export const UploadFormInput = styled.li`
 		border: 1px solid #dddddd;
 		padding: 3%;
 		border-radius: 4px;
-		color: #888888;
+		color: var(--font-color-dark-gray);
 		resize: none;
 	}
 `;
@@ -48,7 +48,7 @@ export const UploadSubmitButton = styled.button`
 	background-color: white;
 	border: 1px solid #dddddd;
 	border-radius: 4px;
-	color: #888888;
+	color: var(--font-color-dark-gray);
 	padding: 2%;
 
 	@media screen and (max-width: 768px) {

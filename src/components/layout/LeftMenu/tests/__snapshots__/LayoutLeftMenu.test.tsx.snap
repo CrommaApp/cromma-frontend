@@ -2,7 +2,7 @@
 
 exports[`LayoutLeftMenu Component Snapshot 1`] = `
 <div
-  className="sc-bdvvtL bfIxQK"
+  className="sc-bdvvtL jvkVjH"
 >
   <div>
     <p
@@ -11,7 +11,7 @@ exports[`LayoutLeftMenu Component Snapshot 1`] = `
       로그인 해주세요
     </p>
     <nav
-      className="sc-dkPtRN bkioiV"
+      className="sc-dkPtRN bDXfHh"
     >
       <ul>
         <li>
