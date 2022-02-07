@@ -2,12 +2,12 @@
 
 exports[`LoginForm Component Snapshot 1`] = `
 <form
-  className="sc-bdvvtL kBQgBD"
+  className="sc-bdvvtL jPHANa"
   onSubmit={[Function]}
 >
   <ul>
     <li
-      className="sc-gsDKAQ OKPww"
+      className="sc-gsDKAQ ifOJJU"
     >
       <label
         className="a11y-hidden"
@@ -28,7 +28,7 @@ exports[`LoginForm Component Snapshot 1`] = `
       />
     </li>
     <li
-      className="sc-gsDKAQ OKPww"
+      className="sc-gsDKAQ ifOJJU"
     >
       <label
         className="a11y-hidden"
