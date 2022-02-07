@@ -11,10 +11,10 @@ export const LayoutMenu = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #dddddd;
+	background-color: var(--background-color-gray);
 	padding: 5% 0;
 	font-size: 1rem;
-	color: #aaaaaa;
+	color: var(--font-color-gray);
 
 	& > div {
 		width: 100%;
@@ -25,7 +25,7 @@ export const LayoutMenu = styled.div`
 
 	& > button {
 		font-size: 1rem;
-		color: #aaaaaa;
+		color: var(--font-color-gray);
 		background-color: transparent;
 	}
 
@@ -64,7 +64,7 @@ export const LayoutNavigation = styled.nav`
 	}
 
 	& a {
-		color: #aaaaaa;
+		color: var(--font-color-gray);
 		font-size: 0.9rem;
 	}
 `;

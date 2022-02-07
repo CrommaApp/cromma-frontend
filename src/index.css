@@ -1,13 +1,8 @@
 :root {
-	--color-white: #ffffff;
-	--color-dark-white: #f9f9f9;
-	--color-lighter-gray: #dddddd;
-	--color-light-gray: #b7b7b7;
-	--color-gray: #adacac;
-	--color-dark-gray: #848484;
-	--color-darker-gray: #656565;
-	--color-blue: #0265f9;
-	--color-red: #e95555;
+	--background-color-light-gray: #eeeeee;
+	--background-color-gray: #dddddd;
+	--font-color-gray: #aaaaaa;
+	--font-color-dark-gray: #888888;
 
 	--font-sans-light: 'sans_light';
 	--font-sans-regular: 'sans_regular';

@@ -7,7 +7,7 @@ export const MorePostsButton = styled.button`
 	background-color: white;
 	border: 2px solid #dddddd;
 	border-radius: 8px;
-	color: #888888;
+	color: var(--font-color-dark-gray);
 	padding: 2%;
 
 	@media screen and (max-width: 768px) {
